@@ -11,6 +11,7 @@ import org.photonvision.targeting.TargetCorner;
 
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.path.PathConstraints;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
@@ -42,20 +43,73 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class canIDs{
+
+    /** @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and feeder to shooter
+     *  @apiNote This is the Feeder Motor Can ID */
+
+    public static final int kFeederMotorCanId = 6;  
+
+    /** @apiNote SPARKmax - The competition robot will have 3 Sparkflex controlled motors
+     * @apiNote This is the Shooter Motor Can ID */
+
+    public static final int kFlywheelMotorCanId = 4; 
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Intake Motor Can ID */
+
+    public static final int kIntakeMotorCanId = 13;
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Pivot Motor of Intake Can ID */  
+
+    public static final int kPivotMotorCanId = 14;  
+
+    /** @apiNote SPARKmax - 
+     * @apiNote This is the Climber Motor Can ID */  
+
+    public static final int kClimbMotorCanId = 15; 
+
+    // Others? PHD, RoboRio?
+  }
+
     public static final class IntakeSubsystemConstants {
-        public static final int kIntakeMotorCanId = 13; // SPARK Flex CAN ID
-        public static final int kConveyorMotorCanId = 15; // SPARK Flex CAN ID
 
-        public static final class IntakeSetpoints {
-            public static final double kIntake = 0.6;
-            public static final double kExtake = -0.6;
-        }
-
-        public static final class ConveyorSetpoints {
-            public static final double kIntake = 0.7;
-            public static final double kExtake = -0.7;
-        }
+    public static final class IntakeSetpoints {
+      /** @apiNote The Command for setting the motor speed*/
+      public static final double kIntake = 0.1; // Intake speed Units are percentage
     }
+
+    public static final class PivotSetPoints {
+      public static final double kStartPosition = 5; // to stay away from zero encoder reading
+      /** @apiNote DEGREES */
+      public static final double kEndPosition = 98.571; 
+
+      public static final int kCurrentLimit = 40;
+
+      public static final double kZeroOffest = 0.0; //units? For stationary testbed motor
+
+      public static final double kPositionConversionFactor = 360/41; // For stationary test bed motor in deg
+      public static final double kVelocityConversionFactor = 360/41; // This is deg/sec 
+
+      public static final IdleMode kIdleMode = IdleMode.kCoast;
+
+      public static final double kMaxVelocity = 2000 ; //percent per min
+      public static final double kMaxAcceleration = 3600; //Units deg/min/sec
+      public static final double kPositionTolerance = 90; // Units deg
+
+      // PID gains    ======== Will need to be tuned when operating on the climber     -Sr
+      public static final double kP = 0.10000000;
+      public static final double kI = 0.00000000;
+      public static final double kD = 0.00000000;
+    
+      // MAYBE LATER!
+      // The pivot is expected to have hard stops
+      // public static final double kFwdSoftLimit = 125;
+      // public static final double kRevSoftLimit = 25;
+
+    }
+  }
 
     public static final class DriveConstants {
         // Driving Parameters - Note that these are not the maximum capable speeds of
