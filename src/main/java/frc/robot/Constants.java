@@ -153,7 +153,7 @@ public final class Constants {
     }
 
     public static final class VisionConstants {
-        public static final String kCameraName = "Cam2";
+        public static final String kCameraName = "Cam1";
         /**
          * Where is the camera mounted relative to robot center?
          */
@@ -162,7 +162,7 @@ public final class Constants {
                         -Units.inchesToMeters(1.3714),
                         Units.inchesToMeters(0),
                         Units.inchesToMeters(20.7281)),
-                new Rotation3d(0, 0, 0));
+                new Rotation3d(0, -(Math.PI / 4), 0));
 
         // The layout of the AprilTags on the field
         public static final AprilTagFieldLayout kTagLayout = AprilTagFieldLayout
