@@ -18,14 +18,12 @@ import frc.robot.motor_ctl.MotorController;
 
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
-  private MotorController m_sucker;
 
   public ShooterSubsystem() {
     m_left = new Flywheel(kLeftCanId, Default.Config);
     m_center = new Flywheel(kCenterCanId, Default.Config);
-    m_right = new Flywheel(kRightCanId, Default.Config);
+    m_right = new Flywheel(kRightCanId, Default.Config.inverted(true));
 
-    m_sucker = new MotorController(kSuckerCanId, Default.Config);
   }
 
   public Command runRPM(double rpm) {
@@ -58,13 +56,5 @@ public class ShooterSubsystem extends SubsystemBase {
       m_center.incrSet(increment),
       m_right.incrSet(increment)
     );
-  }
-  
-  public Command runSucker() {
-    return m_sucker.runForward();
-  }
-
-  public Command stopSucker() {
-    return m_sucker.stopMotor();
   }
 }

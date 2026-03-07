@@ -5,6 +5,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkBaseConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,7 +20,7 @@ public class MotorController extends SubsystemBase{
     private String s_motorName;
 
     // DriveSubsystem constructor - creates & initializes DriveSubsystem object
-    public MotorController(int canID, SparkMaxConfig config){
+    public MotorController(int canID, SparkBaseConfig config){
         s_motorName = "Motor #" + canID;
         m_otor = new SparkMax(canID, MotorType.kBrushless);
         e_ncoder = m_otor.getEncoder(); 
