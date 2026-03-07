@@ -25,6 +25,7 @@ import frc.robot.Constants.AutoConstants.RedAlliance;
 import frc.robot.Constants.OIConstants;
 // Subsystems
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 // import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Vision;
 
@@ -39,6 +40,7 @@ public class RobotContainer {
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
     // private final IntakeSubsystem m_intake = new IntakeSubsystem();
     private final Vision vision = new Vision(m_robotDrive::addVisionMeasurement);
+    private final IntakeSubsystem m_intake = new IntakeSubsystem();
 
     private final SendableChooser<Command> autoChooser;
 
@@ -147,13 +149,18 @@ public class RobotContainer {
         // m_driverController.leftTrigger().whileTrue(m_intake.runExtakeCommand());
         // m_driverController.start()
                 // .onTrue(new InstantCommand(() -> m_robotDrive.resetPose(vision.getPose2d())));
-        m_driverController.b().and(onBlueAlliance)
-                .onTrue(pathfindLeftClimbBlue);
-        m_driverController.b().and(onRedAlliance)
-                .onTrue(pathfindLeftClimbRed);
         m_driverController.a()
                 .onTrue(new InstantCommand(() -> driveTagAssisted()))
                 .onFalse(new InstantCommand(() -> driveNormal()));
+        m_driverController.x()
+            .onTrue(m_intake.runForwardPivot());
+        m_driverController.y()
+            .onTrue(m_intake.runBackwardPivot());
+        m_driverController.rightBumper()
+            .whileTrue(m_intake.runIntakeCommand());
+        m_driverController.leftBumper()
+            .whileTrue(m_intake.runExtakeCommand());
+            
     }
 
     /**

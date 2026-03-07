@@ -6,7 +6,6 @@ import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.MAXMotionConfig.MAXMotionPositionMode;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-
 import com.revrobotics.spark.config.SparkFlexConfig;
 
 import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
@@ -35,8 +34,7 @@ public final class Configs {
                     .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
                     // These are example gains you may need to them for your own robot!
                     .pid(0.04, 0, 0)
-                    .outputRange(-1, 1)
-                    .feedForward.kV(drivingVelocityFeedForward);
+                    .outputRange(-1, 1).feedForward.kV(drivingVelocityFeedForward);
 
             turningConfig
                     .idleMode(IdleMode.kBrake)
@@ -48,7 +46,8 @@ public final class Configs {
                     .inverted(true)
                     .positionConversionFactor(turningFactor) // radians
                     .velocityConversionFactor(turningFactor / 60.0) // radians per second
-                    // This applies to REV Through Bore Encoder V2 (use REV_ThroughBoreEncoder for V1):
+                    // This applies to REV Through Bore Encoder V2 (use REV_ThroughBoreEncoder for
+                    // V1):
                     .apply(AbsoluteEncoderConfig.Presets.REV_ThroughBoreEncoderV2);
 
             turningConfig.closedLoop
@@ -65,47 +64,45 @@ public final class Configs {
         }
     }
 
-    public static final class IntakeSubsystem {
+    public static final class IntakeConfigs {
         public static final SparkMaxConfig intakeConfig = new SparkMaxConfig();
         public static final SparkMaxConfig pivotConfig = new SparkMaxConfig();
 
         static {
             // Configure basic settings of the intake
             intakeConfig
-                .inverted(true)
-                .idleMode(IdleMode.kCoast)
-                .openLoopRampRate(0.5)
-                .smartCurrentLimit(40);
-                     
+                    .inverted(true)
+                    .idleMode(IdleMode.kCoast)
+                    .openLoopRampRate(0.5)
+                    .smartCurrentLimit(40);
+
             pivotConfig
-                .idleMode(PivotSetPoints.kIdleMode)
-                .smartCurrentLimit(PivotSetPoints.kCurrentLimit)
-                .inverted(false);
+                    .idleMode(PivotSetPoints.kIdleMode)
+                    .smartCurrentLimit(PivotSetPoints.kCurrentLimit)
+                    .inverted(false);
             pivotConfig.absoluteEncoder
-                .inverted(false)
-                .zeroOffset(PivotSetPoints.kZeroOffest)
-                .zeroCentered(false)
-                .positionConversionFactor(360)
-                .velocityConversionFactor(360); // this may be giving us degrees/min???? -Sr
+                    .inverted(false)
+                    .zeroOffset(PivotSetPoints.kZeroOffest)
+                    .zeroCentered(false)
+                    .positionConversionFactor(360)
+                    .velocityConversionFactor(360); // this may be giving us degrees/min???? -Sr
             pivotConfig.encoder
-            .positionConversionFactor(PivotSetPoints.kPositionConversionFactor)
-            .velocityConversionFactor(PivotSetPoints.kVelocityConversionFactor);
+                    .positionConversionFactor(PivotSetPoints.kPositionConversionFactor)
+                    .velocityConversionFactor(PivotSetPoints.kVelocityConversionFactor);
             pivotConfig.closedLoop
-                .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-                .pid(PivotSetPoints.kP, PivotSetPoints.kI, PivotSetPoints.kD)
-                .outputRange(-1, 1)
-                .maxMotion    
+                    .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+                    .pid(PivotSetPoints.kP, PivotSetPoints.kI, PivotSetPoints.kD)
+                    .outputRange(-1, 1).maxMotion
                     .cruiseVelocity(PivotSetPoints.kMaxVelocity)
                     .maxAcceleration(PivotSetPoints.kMaxAcceleration)
                     .positionMode(MAXMotionPositionMode.kMAXMotionTrapezoidal)
                     .allowedProfileError(PivotSetPoints.kPositionTolerance);
 
-                    
             // pivotConfig.softLimit
-            //     .forwardSoftLimit(PivotSetPoints.kFwdSoftLimit)
-            //     .reverseSoftLimit(PivotSetPoints.kRevSoftLimit)
-            //     .reverseSoftLimitEnabled(true)
-            //     .forwardSoftLimitEnabled(true);
+            // .forwardSoftLimit(PivotSetPoints.kFwdSoftLimit)
+            // .reverseSoftLimit(PivotSetPoints.kRevSoftLimit)
+            // .reverseSoftLimitEnabled(true)
+            // .forwardSoftLimitEnabled(true);
         }
     }
 }
