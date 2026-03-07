@@ -42,6 +42,36 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class canIDs{
+
+    /** @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and feeder to shooter
+     *  @apiNote This is the Feeder Motor Can ID */
+
+    public static final int kFeederMotorCanId = 6;  
+
+    /** @apiNote SPARKmax - The competition robot will have 3 Sparkflex controlled motors
+     * @apiNote This is the Shooter Motor Can ID */
+
+    public static final int kFlywheelMotorCanId = 4; 
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Intake Motor Can ID */
+
+    public static final int kIntakeMotorCanId = 13;
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Pivot Motor of Intake Can ID */  
+
+    public static final int kPivotMotorCanId = 14;  
+
+    /** @apiNote SPARKmax - 
+     * @apiNote This is the Climber Motor Can ID */  
+
+    public static final int kClimbMotorCanId = 15; 
+
+    // Others? PHD, RoboRio?
+  }
+
     public static final class IntakeSubsystemConstants {
         public static final int kIntakeMotorCanId = 13; // SPARK Flex CAN ID
         public static final int kConveyorMotorCanId = 15; // SPARK Flex CAN ID
