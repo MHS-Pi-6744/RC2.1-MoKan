@@ -11,6 +11,9 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import frc.robot.Constants.ModuleConstants;
 
 public final class Configs {
+    public static final class Default {
+        public static final SparkMaxConfig Config = new SparkMaxConfig();
+    }
     public static final class MAXSwerveModule {
         public static final SparkMaxConfig drivingConfig = new SparkMaxConfig();
         public static final SparkMaxConfig turningConfig = new SparkMaxConfig();
@@ -81,6 +84,27 @@ public final class Configs {
         .idleMode(IdleMode.kCoast)
         .openLoopRampRate(0.5)
         .smartCurrentLimit(40);
+    }
+  }
+
+  public static final class ShooterSubsystem {
+    public static final SparkFlexConfig feederConfig = new SparkFlexConfig();
+
+    static {
+      // Configure basic setting of the flywheel motors
+
+      /*
+       * Configure the closed loop controller. We want to make sure we set the
+       * feedback sensor as the primary encoder.
+       */
+      // Configure basic setting of the feeder motor
+      feederConfig
+        .inverted(false)
+        .idleMode(IdleMode.kCoast)
+        .openLoopRampRate(1.0)
+        .smartCurrentLimit(60);
+
+        
     }
   }
 }

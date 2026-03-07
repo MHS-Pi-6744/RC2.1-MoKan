@@ -42,6 +42,36 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class canIDs{
+
+    /** @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and feeder to shooter
+     *  @apiNote This is the Feeder Motor Can ID */
+
+    public static final int kFeederMotorCanId = 15;  
+
+    /** @apiNote SPARKmax - The competition robot will have 3 Sparkflex controlled motors
+     * @apiNote This is the Shooter Motor Can ID */
+
+    public static final int kFlywheelMotorCanId = 4; 
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Intake Motor Can ID */
+
+    public static final int kIntakeMotorCanId = 13;
+
+    /** @apiNote SPARKmax -
+     * @apiNote This is the Pivot Motor of Intake Can ID */  
+
+    public static final int kPivotMotorCanId = 14;  
+
+    /** @apiNote SPARKmax - 
+     * @apiNote This is the Climber Motor Can ID */  
+
+    public static final int kClimbMotorCanId = 15; 
+
+    // Others? PHD, RoboRio?
+  }
+
     public static final class IntakeSubsystemConstants {
         public static final int kIntakeMotorCanId = 13; // SPARK Flex CAN ID
         public static final int kConveyorMotorCanId = 15; // SPARK Flex CAN ID
@@ -56,6 +86,31 @@ public final class Constants {
             public static final double kExtake = -0.7;
         }
     }
+
+    public static final class ShooterSubsystemConstants {
+  // SPARKmax CAN ID (Right)
+   // public static final int kFlywheelFollowerMotorCanId = 16;  // SPARKmax CAN ID (Left)
+
+   public static final int kCenterCanId = 18;
+   public static final int kRightCanId = 19;
+   public static final int kLeftCanId = 17;
+   
+   public static final int kSuckerCanId = 16;
+    
+    public static final class FeederSetpoints {
+      public static final double kFeed = 0.15;
+    }
+    
+    // Check these units - it looks to me like ShooterSubsystem is controlling in RPM???  Sr
+    public static final class FlywheelSetpoints {
+
+      /** @apiNote This controls how much the shooter will spin
+       * @apiNote PERCENTAGE */
+      
+      public static final double kShootPercent = 50;
+      public static final double kVelocityTolerance = 100;
+    }
+  }
 
     public static final class DriveConstants {
         // Driving Parameters - Note that these are not the maximum capable speeds of
