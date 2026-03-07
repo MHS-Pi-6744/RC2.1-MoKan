@@ -57,6 +57,25 @@ public final class Constants {
         }
     }
 
+    public static final class ShooterSubsystemConstants {
+  // SPARKmax CAN ID (Right)
+   // public static final int kFlywheelFollowerMotorCanId = 16;  // SPARKmax CAN ID (Left)
+
+    public static final class FeederSetpoints {
+      public static final double kFeed = 0.15;
+    }
+    
+    // Check these units - it looks to me like ShooterSubsystem is controlling in RPM???  Sr
+    public static final class FlywheelSetpoints {
+
+      /** @apiNote This controls how much the shooter will spin
+       * @apiNote PERCENTAGE */
+      
+      public static final double kShootPercent = 50;
+      public static final double kVelocityTolerance = 100;
+    }
+  }
+
     public static final class DriveConstants {
         // Driving Parameters - Note that these are not the maximum capable speeds of
         // the robot, rather the allowed maximum speeds

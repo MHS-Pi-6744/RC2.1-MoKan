@@ -83,4 +83,28 @@ public final class Configs {
         .smartCurrentLimit(40);
     }
   }
+
+  public static final class ShooterSubsystem {
+    public static final SparkFlexConfig flywheelConfig = new SparkFlexConfig();
+    public static final SparkFlexConfig flywheelFollowerConfig = new SparkFlexConfig();
+    public static final SparkFlexConfig feederConfig = new SparkFlexConfig();
+
+    static {
+      // Configure basic setting of the flywheel motors
+
+
+      /*
+       * Configure the closed loop controller. We want to make sure we set the
+       * feedback sensor as the primary encoder.
+       */
+      // Configure basic setting of the feeder motor
+      feederConfig
+        .inverted(false)
+        .idleMode(IdleMode.kCoast)
+        .openLoopRampRate(1.0)
+        .smartCurrentLimit(60);
+
+        
+    }
+  }
 }
