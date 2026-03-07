@@ -91,6 +91,12 @@ public final class Constants {
   // SPARKmax CAN ID (Right)
    // public static final int kFlywheelFollowerMotorCanId = 16;  // SPARKmax CAN ID (Left)
 
+   public static final int kCenterCanId = 18;
+   public static final int kRightCanId = 19;
+   public static final int kLeftCanId = 17;
+   
+   public static final int kSuckerCanId = 16;
+    
     public static final class FeederSetpoints {
       public static final double kFeed = 0.15;
     }
