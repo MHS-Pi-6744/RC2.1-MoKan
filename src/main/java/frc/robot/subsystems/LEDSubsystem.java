@@ -63,13 +63,114 @@ public class LEDSubsystem extends SubsystemBase{
         }
 
     }
-    
+    public enum Color1Pattern {
+        End_to_End_Blend_to_Black(-.03),
+        Larson_Scanner(-.01),
+        Light_CHase(.01),
+        Heartbeat_Slow(.03),
+        Heartbeat_Medium(.05),
+        Heartbeat_Fast(.07),
+        Breath_Slow(.09),
+        Breath_Fast(.11),
+        Shot(.13),
+        Strobe(.15);
+
+        private double value;
+
+        Color1Pattern(double value) {
+            this.value = value;
+        }
+    }
+    public enum Color2Pattern {
+        End_to_End_Blend_to_Black(-.03),
+        Larson_Scanner(-.01),
+        Light_CHase(.01),
+        Heartbeat_Slow(.03),
+        Heartbeat_Medium(.05),
+        Heartbeat_Fast(.07),
+        Breath_Slow(.09),
+        Breath_Fast(.11),
+        Shot(.13),
+        Strobe(.15);
+
+        private double value;
+
+        Color2Pattern(double value) {
+            this.value = value;
+        }
+    }
+    public enum Color1and2Pattern {
+        Sparkle_Color1_on_Color2(.37),
+        Sparkle_Color2_on_Color1(.39),
+        Color_Gradient_Color1_and_2(.41),
+        Beats_per_Minute_Color1_and_2(.43),
+        End_to_End_Blend_Color1_to_2(.45),
+        End_to_End_Blend(.45),
+        Color1_and_Color2_no_blending(.49),
+        Twinkles_Color1_and_2(.51),
+        Color_Waves_Color1_and_2(.53),
+        Sinelon_Color1_and_2(.55);
+
+        public double value;
+        Color1and2Pattern(double value) {
+            this.value = value;
+        }
+    }
+    public enum SolidColors {
+        Hot_Pink(.57),
+        Dark_Red(.59),
+        Red(.61),
+        Red_Orange(.63),
+        Orange(.65),
+        Gold(.67),
+        Yellow(.69),
+        Lawn_Green(.71),
+        Lime(.73),
+        Dark_Green(.75),
+        Green(.77),
+        Blue_Green(.79),
+        Aqua(.81),
+        Sky_Blue(.83),
+        Dark_Blue(.85),
+        Blue(.87),
+        Blue_Violet(.89),
+        Violet(.91),
+        White(.93),
+        Gray(.95),
+        Dark_Gray(.97),
+        Black(.99);
+
+        public double value;
+        SolidColors(double value) {
+            this.value = value;
+        }
+    }
+
     public Spark m_led = new Spark(0);
 
-    public Command setLED(FixedPalettePattern p) {
+    public Command setFixedPalletePattern(FixedPalettePattern p) {
         return run(
             () -> m_led.set(p.value)
         );
     }
-    
+    public Command setColor1Pattern(Color1Pattern c1p) {
+        return run(
+            () -> m_led.set(c1p.value)
+        );
+    }
+    public Command setColor2Pattern(Color2Pattern c2p) {
+        return run(
+            () -> m_led.set(c2p.value)
+        );
+    }
+    public Command setColor1and2Pattern(Color1and2Pattern c1a2p) {
+        return run(
+            () -> m_led.set(c1a2p.value)
+        );
+    }
+    public Command setSolidColors(SolidColors sc) {
+        return run(
+            () -> m_led.set(sc.value)
+        );
+    }
 }
