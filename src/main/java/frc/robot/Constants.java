@@ -78,7 +78,7 @@ public final class Constants {
     public static final class PivotSetPoints {
       public static final double kStartPosition = 5; // to stay away from zero encoder reading
       /** @apiNote DEGREES */
-      public static final double kEndPosition =  114; 
+      public static final double kEndPosition = 114; 
 
       public static final int kCurrentLimit = 40;
 

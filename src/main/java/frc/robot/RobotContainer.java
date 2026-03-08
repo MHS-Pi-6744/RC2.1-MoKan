@@ -48,7 +48,7 @@ public class RobotContainer {
     private final Vision vision = new Vision(m_robotDrive::addVisionMeasurement);
     private final IntakeSubsystem m_intake = new IntakeSubsystem();
     private final ShooterSubsystem m_shooter = new ShooterSubsystem();
-    private final MotorController m_feeder = new MotorController(canIDs.kFeederMotorCanId, Default.Config);
+    private final MotorController m_feeder = new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(true));
     private final MotorController m_sucker = new MotorController(ShooterSubsystemConstants.kSuckerCanId, Default.Config.inverted(true));
     
     
@@ -189,9 +189,9 @@ public class RobotContainer {
         m_copilotController.leftBumper()
             .whileTrue(m_intake.runExtakeCommand());
         m_copilotController.x()
-            .onTrue(m_intake.runForwardPivot());
+            .whileTrue(m_intake.runForwardPivot());
         m_copilotController.y()
-            .onTrue(m_intake.runBackwardPivot());
+            .whileTrue(m_intake.runBackwardPivot());
     }
 
     /**
