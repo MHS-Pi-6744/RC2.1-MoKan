@@ -48,12 +48,7 @@ public final class Constants {
     /** @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and feeder to shooter
      *  @apiNote This is the Feeder Motor Can ID */
 
-    public static final int kFeederMotorCanId = 6;  
-
-    /** @apiNote SPARKmax - The competition robot will have 3 Sparkflex controlled motors
-     * @apiNote This is the Shooter Motor Can ID */
-
-    public static final int kFlywheelMotorCanId = 4; 
+    public static final int kFeederMotorCanId = 15;  
 
     /** @apiNote SPARKmax -
      * @apiNote This is the Intake Motor Can ID */
@@ -107,7 +102,31 @@ public final class Constants {
       // The pivot is expected to have hard stops
       // public static final double kFwdSoftLimit = 125;
       // public static final double kRevSoftLimit = 25;
+    }
+}
 
+    public static final class ShooterSubsystemConstants {
+  // SPARKmax CAN ID (Right)
+   // public static final int kFlywheelFollowerMotorCanId = 16;  // SPARKmax CAN ID (Left)
+
+   public static final int kCenterCanId = 18;
+   public static final int kRightCanId = 19;
+   public static final int kLeftCanId = 17;
+   
+   public static final int kSuckerCanId = 16;
+    
+    public static final class FeederSetpoints {
+      public static final double kFeed = 0.15;
+    }
+    
+    // Check these units - it looks to me like ShooterSubsystem is controlling in RPM???  Sr
+    public static final class FlywheelSetpoints {
+
+      /** @apiNote This controls how much the shooter will spin
+       * @apiNote PERCENTAGE */
+      
+      public static final double kShootPercent = 50;
+      public static final double kVelocityTolerance = 100;
     }
   }
 
@@ -179,6 +198,7 @@ public final class Constants {
 
     public static final class OIConstants {
         public static final int kDriverControllerPort = 0;
+        public static final int kCopilotControllerPort = 1;
         public static final double kDriveDeadband = 0.05;
     }
 

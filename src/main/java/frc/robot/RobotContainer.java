@@ -14,18 +14,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // WpiLib2 stuff
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.Configs.Default;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.AutoConstants.BlueAlliance;
 import frc.robot.Constants.AutoConstants.RedAlliance;
+import frc.robot.motor_ctl.MotorController;
 // Constants
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.ShooterSubsystemConstants;
+import frc.robot.Constants.canIDs;
 // Subsystems
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 // import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Vision;
 
@@ -41,11 +47,17 @@ public class RobotContainer {
     // private final IntakeSubsystem m_intake = new IntakeSubsystem();
     private final Vision vision = new Vision(m_robotDrive::addVisionMeasurement);
     private final IntakeSubsystem m_intake = new IntakeSubsystem();
+    private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+    private final MotorController m_feeder = new MotorController(canIDs.kFeederMotorCanId, Default.Config);
+    private final MotorController m_sucker = new MotorController(ShooterSubsystemConstants.kSuckerCanId, Default.Config.inverted(true));
+    
+    
 
     private final SendableChooser<Command> autoChooser;
 
     // The driver's controller
     public CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
+    public CommandXboxController m_copilotController = new CommandXboxController(OIConstants.kDriverControllerPort);
 
     Command pathfindLeftClimbBlue = AutoBuilder.pathfindToPose(
             BlueAlliance.kLeftClimb,
@@ -152,15 +164,34 @@ public class RobotContainer {
         m_driverController.a()
                 .onTrue(new InstantCommand(() -> driveTagAssisted()))
                 .onFalse(new InstantCommand(() -> driveNormal()));
-        m_driverController.x()
-            .onTrue(m_intake.runForwardPivot());
-        m_driverController.y()
-            .onTrue(m_intake.runBackwardPivot());
+        m_driverController.povUp()
+            .onTrue(m_shooter.incrementSetpoint(250));
+        m_driverController.povDown()
+            .onTrue(m_shooter.incrementSetpoint(-250));
         m_driverController.rightBumper()
+            .onTrue(m_shooter.runAtSet())
+            .onFalse(m_shooter.stopFlywheel());
+        m_driverController.x()
+            .onTrue(
+                new ParallelCommandGroup(
+                    m_sucker.setSpeed(0.5),
+                    m_feeder.setSpeed(0.5)
+                )
+            )
+            .onFalse(
+                new ParallelCommandGroup(
+                    m_sucker.stopMotor(),
+                    m_feeder.stopMotor()
+                )
+            );
+        m_copilotController.rightBumper()
             .whileTrue(m_intake.runIntakeCommand());
-        m_driverController.leftBumper()
+        m_copilotController.leftBumper()
             .whileTrue(m_intake.runExtakeCommand());
-            
+        m_copilotController.x()
+            .onTrue(m_intake.runForwardPivot());
+        m_copilotController.y()
+            .onTrue(m_intake.runBackwardPivot());
     }
 
     /**
