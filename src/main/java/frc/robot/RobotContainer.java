@@ -57,7 +57,7 @@ public class RobotContainer {
 
     // The driver's controller
     public CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
-    public CommandXboxController m_copilotController = new CommandXboxController(OIConstants.kDriverControllerPort);
+    public CommandXboxController m_copilotController = new CommandXboxController(OIConstants.kCopilotControllerPort);
 
     Command pathfindLeftClimbBlue = AutoBuilder.pathfindToPose(
             BlueAlliance.kLeftClimb,
