@@ -75,7 +75,7 @@ public final class Configs {
     static {
       // Configure basic settings of the intake motor
       intakeConfig
-          .inverted(false)
+          .inverted(true)
           .idleMode(IdleMode.kCoast)
           .openLoopRampRate(0.5)
           .smartCurrentLimit(40);
