@@ -245,7 +245,7 @@ public final class Constants {
                 -Units.inchesToMeters(1.3714),
                 Units.inchesToMeters(0),
                 Units.inchesToMeters(20.7281)),
-            new Rotation3d(0, -(Math.PI / 4), 0));
+            new Rotation3d(0, -(Math.PI / 6), 0));
 
     // The layout of the AprilTags on the field
     public static final AprilTagFieldLayout kTagLayout =

@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Configs.Default;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.AutoConstants.BlueAlliance;
@@ -97,10 +96,7 @@ public class RobotContainer {
 
     // Build an auto chooser. This will use Commands.none() as the default option.
     autoChooser = AutoBuilder.buildAutoChooser();
-    autoChooser.addOption("DynFwd", m_robotDrive.SysIDDynamic(Direction.kForward));
-    autoChooser.addOption("DynRev", m_robotDrive.SysIDDynamic(Direction.kReverse));
-    autoChooser.addOption("QasFwd", m_robotDrive.SysIDQuasistatic(Direction.kForward));
-    autoChooser.addOption("QasRev", m_robotDrive.SysIDQuasistatic(Direction.kReverse));
+    autoChooser.addOption("Pathfind Left Climb Red", pathfindLeftClimbRed);
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
@@ -164,11 +160,14 @@ public class RobotContainer {
         .onFalse(new InstantCommand(() -> driveNormal()));
     m_driverController.povUp().onTrue(m_shooter.incrementSetpoint(250));
     m_driverController.povDown().onTrue(m_shooter.incrementSetpoint(-250));
+    m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
+    m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
     m_driverController.rightBumper().onTrue(m_shooter.runAtSet()).onFalse(m_shooter.stopFlywheel());
     m_driverController
         .x()
         .onTrue(new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5)))
         .onFalse(new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor()));
+    m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController.rightBumper().whileTrue(m_intake.runIntakeCommand());
     m_copilotController.leftBumper().whileTrue(m_intake.runExtakeCommand());
     m_copilotController.a().onTrue(m_intake.runForwardPivot());

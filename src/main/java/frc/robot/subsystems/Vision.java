@@ -37,8 +37,8 @@ public class Vision extends SubsystemBase {
    */
   PhotonTrackedTarget[] targets;
 
-  Sendable s_tag25 = aprilTagSendable(25);
-  Sendable s_tag26 = aprilTagSendable(26);
+  Sendable s_tag25 = aprilTagSendable(9);
+  Sendable s_tag26 = aprilTagSendable(10);
 
   Pose3d p_estimated;
 
@@ -62,9 +62,9 @@ public class Vision extends SubsystemBase {
     refreshTags();
     SmartDashboard.putData("Tag #25", s_tag25);
     SmartDashboard.putData("Tag #26", s_tag26);
-    SmartDashboard.putNumber("Closest Test", getClosestTag(new int[] {25, 26}).getYaw());
-    SmartDashboard.putNumber("Average of Tags", getAverageTagsYaw(new int[] {25, 26}));
-    SmartDashboard.putNumber("Priority: 25, 26", getTagsWithPriority(new int[] {25, 26}).getYaw());
+    SmartDashboard.putNumber("Closest Test", getClosestTag(new int[] {9, 10}).getYaw());
+    SmartDashboard.putNumber("Average of Tags", getAverageTagsYaw(new int[] {9, 10}));
+    SmartDashboard.putNumber("Priority: 25, 26", getTagsWithPriority(new int[] {9, 10}).getYaw());
   }
 
   public Pose2d getPose2d() {
