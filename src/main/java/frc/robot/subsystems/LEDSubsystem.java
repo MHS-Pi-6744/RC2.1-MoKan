@@ -82,16 +82,16 @@ public class LEDSubsystem extends SubsystemBase{
         }
     }
     public enum Color2Pattern {
-        End_to_End_Blend_to_Black(-.03),
-        Larson_Scanner(-.01),
-        Light_CHase(.01),
-        Heartbeat_Slow(.03),
-        Heartbeat_Medium(.05),
-        Heartbeat_Fast(.07),
-        Breath_Slow(.09),
-        Breath_Fast(.11),
-        Shot(.13),
-        Strobe(.15);
+        End_to_End_Blend_to_Black(.17),
+        Larson_Scanner(.19),
+        Light_CHase(.21),
+        Heartbeat_Slow(.23),
+        Heartbeat_Medium(.25),
+        Heartbeat_Fast(.27),
+        Breath_Slow(.29),
+        Breath_Fast(.31),
+        Shot(.33),
+        Strobe(.35);
 
         private double value;
 
