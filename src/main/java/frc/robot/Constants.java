@@ -28,23 +28,18 @@ import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide
- * numerical or boolean
- * constants. This class should not be used for any other purpose. All constants
- * should be declared
+ * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
- * <p>
- * It is advised to statically import this class (or one of its inner classes)
- * wherever the
+ * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
   public static final class canIDs {
 
     /**
-     * @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and
-     *          feeder to shooter
+     * @apiNote SPARKmax - The competition robot will have 2 motors - conveyer and feeder to shooter
      * @apiNote This is the Feeder Motor Can ID
      */
     public static final int kFeederMotorCanId = 15;
@@ -91,7 +86,8 @@ public final class Constants {
 
       public static final double kZeroOffest = 0.0; // units? For stationary testbed motor
 
-      public static final double kPositionConversionFactor = 360 / 41; // For stationary test bed motor in deg
+      public static final double kPositionConversionFactor =
+          360 / 41; // For stationary test bed motor in deg
       public static final double kVelocityConversionFactor = 360 / 41; // This is deg/sec
 
       public static final IdleMode kIdleMode = IdleMode.kCoast;
@@ -146,19 +142,22 @@ public final class Constants {
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 3; // 4.8;
     public static final double kMaxAccelerationMetersPerSecondSq = 3; // 4.8;
-    public static final double kMaxAngularSpeed = 1.5 * Math.PI; // 2 * Math.PI; // radians per second
-    public static final double kMaxAngularAcceleration = 1.5 * Math.PI; // 2 * Math.PI; // radians per second
+    public static final double kMaxAngularSpeed =
+        1.5 * Math.PI; // 2 * Math.PI; // radians per second
+    public static final double kMaxAngularAcceleration =
+        1.5 * Math.PI; // 2 * Math.PI; // radians per second
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(28);
     // Distance between centers of right and left wheels on robot
     public static final double kWheelBase = Units.inchesToMeters(28);
     // Distance between front and back wheels on robot
-    public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
-        new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-        new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-        new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
-        new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+    public static final SwerveDriveKinematics kDriveKinematics =
+        new SwerveDriveKinematics(
+            new Translation2d(kWheelBase / 2, kTrackWidth / 2),
+            new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
+            new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
+            new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
     public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;
@@ -199,9 +198,10 @@ public final class Constants {
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
     // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15
     // teeth on the bevel pinion
-    public static final double kDrivingMotorReduction = (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
-    public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters)
-        / kDrivingMotorReduction;
+    public static final double kDrivingMotorReduction =
+        (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
+    public static final double kDriveWheelFreeSpeedRps =
+        (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters) / kDrivingMotorReduction;
   }
 
   public static final class OIConstants {
@@ -211,11 +211,12 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final PathConstraints kConstraints = new PathConstraints(
-        DriveConstants.kMaxSpeedMetersPerSecond,
-        DriveConstants.kMaxAccelerationMetersPerSecondSq,
-        DriveConstants.kMaxAngularSpeed,
-        DriveConstants.kMaxAngularAcceleration);
+    public static final PathConstraints kConstraints =
+        new PathConstraints(
+            DriveConstants.kMaxSpeedMetersPerSecond,
+            DriveConstants.kMaxAccelerationMetersPerSecondSq,
+            DriveConstants.kMaxAngularSpeed,
+            DriveConstants.kMaxAngularAcceleration);
 
     public static final class BlueAlliance {
       // [0.9781092627094603, 4.651867655668605, 0.23733570893866954]
@@ -236,56 +237,59 @@ public final class Constants {
 
   public static final class VisionConstants {
     public static final String kCameraName = "Cam1";
-    /**
-     * Where is the camera mounted relative to robot center?
-     */
-    public static final Transform3d kRobotToCam = new Transform3d(
-        new Translation3d(
-            -Units.inchesToMeters(1.3714),
-            Units.inchesToMeters(0),
-            Units.inchesToMeters(20.7281)),
-        new Rotation3d(0, -(Math.PI / 4), 0));
+
+    /** Where is the camera mounted relative to robot center? */
+    public static final Transform3d kRobotToCam =
+        new Transform3d(
+            new Translation3d(
+                -Units.inchesToMeters(1.3714),
+                Units.inchesToMeters(0),
+                Units.inchesToMeters(20.7281)),
+            new Rotation3d(0, -(Math.PI / 4), 0));
 
     // The layout of the AprilTags on the field
-    public static final AprilTagFieldLayout kTagLayout = AprilTagFieldLayout
-        .loadField(AprilTagFields.kDefaultField);
+    public static final AprilTagFieldLayout kTagLayout =
+        AprilTagFieldLayout.loadField(AprilTagFields.kDefaultField);
+
     /** Placeholder target with almost all fields maxxed out */
-    public static final PhotonTrackedTarget kMaxTarget = new PhotonTrackedTarget(
-        Double.MAX_VALUE,
-        Double.MAX_VALUE,
-        Double.MAX_VALUE,
-        Double.MAX_VALUE,
-        -1,
-        Integer.MAX_VALUE,
-        Float.MAX_VALUE,
-        new Transform3d(
+    public static final PhotonTrackedTarget kMaxTarget =
+        new PhotonTrackedTarget(
             Double.MAX_VALUE,
             Double.MAX_VALUE,
             Double.MAX_VALUE,
-            new Rotation3d(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)),
-        new Transform3d(
             Double.MAX_VALUE,
+            -1,
+            Integer.MAX_VALUE,
+            Float.MAX_VALUE,
+            new Transform3d(
+                Double.MAX_VALUE,
+                Double.MAX_VALUE,
+                Double.MAX_VALUE,
+                new Rotation3d(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)),
+            new Transform3d(
+                Double.MAX_VALUE,
+                Double.MAX_VALUE,
+                Double.MAX_VALUE,
+                new Rotation3d(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)),
             Double.MAX_VALUE,
-            Double.MAX_VALUE,
-            new Rotation3d(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)),
-        Double.MAX_VALUE,
-        List.of(new TargetCorner()),
-        List.of(new TargetCorner()));
+            List.of(new TargetCorner()),
+            List.of(new TargetCorner()));
 
     /** Placeholder target with almost all fields zeroed out */
-    public static final PhotonTrackedTarget kEmptyTarget = new PhotonTrackedTarget(
-        0,
-        0,
-        0,
-        0,
-        -1,
-        0,
-        0,
-        new Transform3d(0, 0, 0, new Rotation3d(0, 0, 0)),
-        new Transform3d(0, 0, 0, new Rotation3d(0, 0, 0)),
-        0,
-        List.of(new TargetCorner()),
-        List.of(new TargetCorner()));
+    public static final PhotonTrackedTarget kEmptyTarget =
+        new PhotonTrackedTarget(
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            new Transform3d(0, 0, 0, new Rotation3d(0, 0, 0)),
+            new Transform3d(0, 0, 0, new Rotation3d(0, 0, 0)),
+            0,
+            List.of(new TargetCorner()),
+            List.of(new TargetCorner()));
 
     public static final Matrix<N3, N1> kSingleTagStdDevs = VecBuilder.fill(4, 4, 8);
     public static final Matrix<N3, N1> kMultiTagStdDevs = VecBuilder.fill(0.5, 0.5, 1);
