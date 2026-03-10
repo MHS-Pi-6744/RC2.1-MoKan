@@ -48,7 +48,7 @@ public class RobotContainer {
   private final IntakeSubsystem m_intake = new IntakeSubsystem();
   private final ShooterSubsystem m_shooter = new ShooterSubsystem();
   private final MotorController m_feeder =
-      new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(true));
+      new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(false));
   private final MotorController m_sucker =
       new MotorController(ShooterSubsystemConstants.kSuckerCanId, Default.Config.inverted(true));
 
@@ -153,7 +153,7 @@ public class RobotContainer {
 
   /** Use this method to define your button->command mappings. */
   private void configureButtonBindings() {
-    m_driverController.rightBumper().whileTrue(new InstantCommand(() -> m_robotDrive.setX()));
+    // m_driverController.rightBumper().whileTrue(new InstantCommand(() -> m_robotDrive.setX()));
     // m_driverController.rightTrigger().whileTrue(m_intake.runIntakeCommand());
     // m_driverController.leftTrigger().whileTrue(m_intake.runExtakeCommand());
     // m_driverController.start()
@@ -171,8 +171,8 @@ public class RobotContainer {
         .onFalse(new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor()));
     m_copilotController.rightBumper().whileTrue(m_intake.runIntakeCommand());
     m_copilotController.leftBumper().whileTrue(m_intake.runExtakeCommand());
-    m_copilotController.x().whileTrue(m_intake.runForwardPivot());
-    m_copilotController.y().whileTrue(m_intake.runBackwardPivot());
+    m_copilotController.a().onTrue(m_intake.runForwardPivot());
+    m_copilotController.b().onTrue(m_intake.runBackwardPivot());
   }
 
   /**

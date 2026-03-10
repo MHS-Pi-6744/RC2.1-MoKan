@@ -80,7 +80,7 @@ public final class Constants {
       /**
        * @apiNote DEGREES
        */
-      public static final double kEndPosition = 114;
+      public static final double kEndPosition = 120;
 
       public static final int kCurrentLimit = 40;
 
@@ -92,7 +92,7 @@ public final class Constants {
 
       public static final IdleMode kIdleMode = IdleMode.kCoast;
 
-      public static final double kMaxVelocity = 2000; // percent per min
+      public static final double kMaxVelocity = 9000; // degrees per min
       public static final double kMaxAcceleration = 3600; // Units deg/min/sec
       public static final double kPositionTolerance = 90; // Units deg
 
