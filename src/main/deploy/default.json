@@ -39,10 +39,10 @@
               "topic": "/SmartDashboard/Flywheel #17/At Setpoint?",
               "period": 0.06,
               "data_type": "boolean",
-              "true_color": 4283215696,
-              "false_color": 4294198070,
-              "true_icon": "None",
-              "false_icon": "None"
+              "true_color": 4289127329,
+              "false_color": 4294151080,
+              "true_icon": "Checkmark",
+              "false_icon": "X"
             }
           },
           {
@@ -140,23 +140,6 @@
             }
           },
           {
-            "title": "At Setpoint?",
-            "x": 1152.0,
-            "y": 0.0,
-            "width": 256.0,
-            "height": 256.0,
-            "type": "Boolean Box",
-            "properties": {
-              "topic": "/SmartDashboard/Flywheel #17/At Setpoint?",
-              "period": 0.06,
-              "data_type": "boolean",
-              "true_color": 4283215696,
-              "false_color": 4294198070,
-              "true_icon": "None",
-              "false_icon": "None"
-            }
-          },
-          {
             "title": "Velocity",
             "x": 1408.0,
             "y": 0.0,
@@ -219,6 +202,23 @@
             "properties": {
               "topic": "/FMSInfo",
               "period": 0.06
+            }
+          },
+          {
+            "title": "At Setpoint?",
+            "x": 1152.0,
+            "y": 0.0,
+            "width": 256.0,
+            "height": 256.0,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Flywheel #17/At Setpoint?",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4289127329,
+              "false_color": 4294151080,
+              "true_icon": "Checkmark",
+              "false_icon": "X"
             }
           }
         ]
