@@ -156,16 +156,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Pivot/"+"Output", m_pivotMotor.getAppliedOutput());
-    SmartDashboard.putNumber("Pivot/"+"Current", m_pivotMotor.getOutputCurrent());
-    SmartDashboard.putNumber("Pivot/"+"Relative/"+"Position", re_pivotMotor.getPosition());
+    SmartDashboard.putNumber("Pivot/" + "Output", m_pivotMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Pivot/" + "Current", m_pivotMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Position", re_pivotMotor.getPosition());
     // SmartDashboard.putNumber("Pivot/"+"Absolute/"+"Position", );
-    SmartDashboard.putNumber("Pivot/"+"Relative/"+"Velocity", re_pivotMotor.getVelocity());
+    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Velocity", re_pivotMotor.getVelocity());
     // SmartDashboard.putNumber("Pivot/"+"Absolute/"+"Velocity", );
 
-    SmartDashboard.putNumber("Intake/"+"Output", m_intakeMotor.getAppliedOutput());
-    SmartDashboard.putNumber("Intake/"+"Current", m_intakeMotor.getOutputCurrent());
-    SmartDashboard.putNumber("Intake/"+"Position", m_intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putNumber("Intake/"+"Velocity", m_intakeMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Intake/" + "Output", m_intakeMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Intake/" + "Current", m_intakeMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Intake/" + "Position", m_intakeMotor.getEncoder().getPosition());
+    SmartDashboard.putNumber("Intake/" + "Velocity", m_intakeMotor.getEncoder().getVelocity());
   }
 }
