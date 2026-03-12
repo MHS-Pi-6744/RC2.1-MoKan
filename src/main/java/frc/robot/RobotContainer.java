@@ -99,14 +99,6 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-
-    drivingMode = DrivingMode.kNormal;
-
-    // Build an auto chooser. This will use Commands.none() as the default option.
-    autoChooser = AutoBuilder.buildAutoChooser();
-    autoChooser.addOption("Pathfind Left Climb Red", pathfindLeftClimbRed);
 
     NamedCommands.registerCommand("Flywheel Shoot", m_shooter.runRPM(2500));
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
@@ -120,6 +112,15 @@ public class RobotContainer {
     NamedCommands.registerCommand("Intake Forwards", m_intake.runMotor(1));
     NamedCommands.registerCommand("Intake Backwards", m_intake.runMotor(-1));
     NamedCommands.registerCommand("Intake Stop", m_intake.stopMotor());
+
+    // Configure the button bindings
+    configureButtonBindings();
+
+    drivingMode = DrivingMode.kNormal;
+
+    // Build an auto chooser. This will use Commands.none() as the default option.
+    autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser.addOption("Pathfind Left Climb Red", pathfindLeftClimbRed);
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
