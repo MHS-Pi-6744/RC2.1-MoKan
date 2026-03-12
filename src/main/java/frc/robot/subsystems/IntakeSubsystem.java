@@ -125,6 +125,16 @@ public class IntakeSubsystem extends SubsystemBase {
         .withName("Moving Pivot Forward");
   }
 
+  public Command runMiddlePivot() {
+    return this.run(
+            () ->
+                setTargetPosition(
+                    PivotSetPoints.kMiddlePosition) // Snap to the middle position with the
+            // trapazoidal movement
+            )
+        .withName("Moving Pivot Middle");
+  }
+
   /**
    * {@link Command} to move the Pivot Motor backward.
    *

@@ -173,6 +173,7 @@ public class RobotContainer {
     m_copilotController.leftBumper().whileTrue(m_intake.runExtakeCommand());
     m_copilotController.a().onTrue(m_intake.runForwardPivot());
     m_copilotController.b().onTrue(m_intake.runBackwardPivot());
+    m_copilotController.x().onTrue(m_intake.runMiddlePivot());
   }
 
   /**
