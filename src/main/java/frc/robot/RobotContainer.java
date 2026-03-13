@@ -100,7 +100,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    NamedCommands.registerCommand("Flywheel Shoot", m_shooter.runRPM(2500));
+    NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
     NamedCommands.registerCommand("Feeder Go", m_feeder_run);
     NamedCommands.registerCommand("Feeder Stop", m_feeder_stop);
@@ -191,8 +191,14 @@ public class RobotContainer {
     m_driverController.rightBumper().onTrue(m_shooter.runAtSet()).onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
-    m_copilotController.rightBumper().whileTrue(m_intake.runMotor(1));
-    m_copilotController.leftBumper().whileTrue(m_intake.runMotor(-1));
+    m_copilotController
+        .rightBumper()
+        .whileTrue(m_intake.runMotor(1))
+        .whileFalse(m_intake.stopMotor());
+    m_copilotController
+        .leftBumper()
+        .whileTrue(m_intake.runMotor(-1))
+        .whileFalse(m_intake.stopMotor());
     m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
   }

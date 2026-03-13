@@ -5,9 +5,22 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Pivot Down"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Pivot Down"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.0
+                }
+              }
+            ]
           }
         },
         {
@@ -17,43 +30,83 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Flywheel Go"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feeder Go"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "race",
                 "data": {
-                  "name": "Feeder Stop"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Flywheel Go"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 1.5
+                      }
+                    }
+                  ]
                 }
               },
               {
-                "type": "named",
+                "type": "race",
                 "data": {
-                  "name": "Flywheel Stop"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Feeder Go"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 5.0
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "race",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Feeder Stop"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.0
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "race",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Flywheel Stop"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.0
+                      }
+                    }
+                  ]
                 }
               }
             ]

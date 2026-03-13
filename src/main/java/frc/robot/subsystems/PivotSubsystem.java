@@ -44,8 +44,6 @@ public class PivotSubsystem extends SubsystemBase {
 
     setTargetPosition(
         PivotSetPoints.kStartPosition); // set target position to start position and go there
-
-    System.out.println("---> IntakeSubsystem initialized");
   }
 
   public void slowMoveBack() {
