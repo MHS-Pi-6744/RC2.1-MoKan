@@ -77,6 +77,8 @@ public final class Constants {
     public static final class PivotSetPoints {
       public static final double kStartPosition = 5; // to stay away from zero encoder reading
 
+      public static final double kMiddlePosition = 62.5;
+
       /**
        * @apiNote DEGREES
        */

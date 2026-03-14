@@ -199,8 +199,9 @@ public class RobotContainer {
         .leftBumper()
         .whileTrue(m_intake.runMotor(-1))
         .whileFalse(m_intake.stopMotor());
+    m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
+    m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
-    m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
   }
 
   /**
