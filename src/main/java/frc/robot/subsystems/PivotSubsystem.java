@@ -46,10 +46,6 @@ public class PivotSubsystem extends SubsystemBase {
         PivotSetPoints.kStartPosition); // set target position to start position and go there
   }
 
-  public void slowMoveBack() {
-    re_pivotMotor.setPosition(-.5);
-  }
-
   public Command setTargetPosition(double setpos) {
     return run(
         () ->

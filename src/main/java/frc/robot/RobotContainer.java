@@ -7,6 +7,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -26,6 +27,7 @@ import frc.robot.Constants.AutoConstants.RedAlliance;
 import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterSubsystemConstants;
+import frc.robot.Constants.VisionConstants;
 import frc.robot.Constants.canIDs;
 // Subsystems
 import frc.robot.motor_ctl.MotorController;
@@ -136,7 +138,9 @@ public class RobotContainer {
                         m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                     -MathUtil.applyDeadband(
                         m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                    -MathUtil.applyDeadband(getDriveRot(), OIConstants.kDriveDeadband),
+                    -MathUtil.applyDeadband(
+                        getDriveRot(),
+                        drivingMode == DrivingMode.kTagAssisted ? 0.0 : OIConstants.kDriveDeadband),
                     true),
             m_robotDrive,
             vision));
@@ -165,13 +169,27 @@ public class RobotContainer {
       case kNormal:
         return m_driverController.getRightX();
       case kTagAssisted:
-        return vision.getTag(25).getYaw() / 180;
+        var robot_pose = m_robotDrive.getPose();
+        var a = VisionConstants.kBluHubCenter.getX() - robot_pose.getX();
+        var o = VisionConstants.kBluHubCenter.getY() - robot_pose.getY();
+        if (a == 0) return 0;
+        var target_angle = Math.atan2(o, a);
+        var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
+        System.out.println(
+            "diff = "
+                + diff
+                + "; target_angle = "
+                + Units.radiansToDegrees(target_angle)
+                + "; sent = "
+                + -diff / 180
+                + ";");
+        return -diff / 180;
       default:
         return m_driverController.getRightX();
     }
   }
 
-  /** Use this method to define your button->command mappings. */
+  /** Use this method to define your button -> command mappings. */
   private void configureButtonBindings() {
     // m_driverController.rightBumper().whileTrue(new InstantCommand(() ->
     // m_robotDrive.setX()));
