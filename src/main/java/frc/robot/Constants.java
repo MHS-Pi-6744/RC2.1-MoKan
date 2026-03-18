@@ -86,7 +86,7 @@ public final class Constants {
 
       public static final int kCurrentLimit = 40;
 
-      public static final double kZeroOffest = .671; // units? For stationary testbed motor
+      public static final double kZeroOffest = .671; // rotations at the point of the encoder
 
       public static final double kPositionConversionFactor =
           360 / 41; // For stationary test bed motor in deg
