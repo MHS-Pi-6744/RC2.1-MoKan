@@ -170,7 +170,8 @@ public class RobotContainer {
         return m_driverController.getRightX();
       case kTagAssisted:
         var robot_pose = m_robotDrive.getPose();
-        var target_pose = isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
+        var target_pose =
+            isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
         var a = target_pose.getX() - robot_pose.getX();
         var o = target_pose.getY() - robot_pose.getY();
         if (a == 0) return 0;
