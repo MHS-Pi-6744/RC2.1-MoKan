@@ -170,19 +170,12 @@ public class RobotContainer {
         return m_driverController.getRightX();
       case kTagAssisted:
         var robot_pose = m_robotDrive.getPose();
-        var a = VisionConstants.kBluHubCenter.getX() - robot_pose.getX();
-        var o = VisionConstants.kBluHubCenter.getY() - robot_pose.getY();
+        var target_pose = isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
+        var a = target_pose.getX() - robot_pose.getX();
+        var o = target_pose.getY() - robot_pose.getY();
         if (a == 0) return 0;
         var target_angle = Math.atan2(o, a);
         var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
-        System.out.println(
-            "diff = "
-                + diff
-                + "; target_angle = "
-                + Units.radiansToDegrees(target_angle)
-                + "; sent = "
-                + -diff / 180
-                + ";");
         return -diff / 180;
       default:
         return m_driverController.getRightX();
