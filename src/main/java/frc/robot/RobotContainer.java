@@ -204,15 +204,15 @@ public class RobotContainer {
     m_driverController
         .leftBumper()
         .whileTrue(
-          new RepeatCommand(
-            m_shooter.smartShoot(
-                m_robotDrive
-                    .getPose()
-                    .getTranslation()
-                    .getDistance(
-                        (isRedAlliance()
-                            ? VisionConstants.kRedHubCenter
-                            : VisionConstants.kBluHubCenter)))))
+            new RepeatCommand(
+                m_shooter.smartShoot(
+                    m_robotDrive
+                        .getPose()
+                        .getTranslation()
+                        .getDistance(
+                            (isRedAlliance()
+                                ? VisionConstants.kRedHubCenter
+                                : VisionConstants.kBluHubCenter)))))
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
