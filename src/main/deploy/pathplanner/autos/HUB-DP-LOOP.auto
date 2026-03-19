@@ -5,9 +5,22 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Flywheel Go"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Go"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0
+                }
+              }
+            ]
           }
         },
         {
@@ -17,9 +30,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Flywheel Stop"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Stop"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0
+                }
+              }
+            ]
           }
         },
         {
@@ -35,9 +61,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Flywheel Go"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Go"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0
+                }
+              }
+            ]
           }
         },
         {
@@ -47,9 +86,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "Flywheel Stop"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Stop"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0
+                }
+              }
+            ]
           }
         }
       ]

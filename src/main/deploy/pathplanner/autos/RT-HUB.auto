@@ -5,6 +5,12 @@
     "data": {
       "commands": [
         {
+          "type": "path",
+          "data": {
+            "pathName": "RT-HUB"
+          }
+        },
+        {
           "type": "race",
           "data": {
             "commands": [
@@ -17,7 +23,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.0
+                  "waitTime": 0
                 }
               }
             ]
@@ -42,16 +48,10 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.0
+                  "waitTime": 0
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "HUB-RC"
           }
         }
       ]
