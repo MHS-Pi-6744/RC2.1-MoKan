@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -200,7 +201,19 @@ public class RobotContainer {
     m_driverController.povDown().onTrue(m_shooter.incrementSetpoint(-250));
     m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
-    m_driverController.rightBumper().onTrue(m_shooter.runAtSet()).onFalse(m_shooter.stopFlywheel());
+    m_driverController
+        .leftBumper()
+        .whileTrue(
+          new RepeatCommand(
+            m_shooter.smartShoot(
+                m_robotDrive
+                    .getPose()
+                    .getTranslation()
+                    .getDistance(
+                        (isRedAlliance()
+                            ? VisionConstants.kRedHubCenter
+                            : VisionConstants.kBluHubCenter)))))
+        .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController

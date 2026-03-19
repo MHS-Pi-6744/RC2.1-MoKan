@@ -39,4 +39,13 @@ public class ShooterSubsystem extends SubsystemBase {
     return new ParallelCommandGroup(
         m_left.incrSet(increment), m_center.incrSet(increment), m_right.incrSet(increment));
   }
+
+  private double rpmFromDist(double x) {
+    return 2236.23475 * Math.pow(1.1132, x);
+  }
+
+  public Command smartShoot(double distance) {
+    var rpm = rpmFromDist(distance);
+    return runRPM(rpm);
+  }
 }
