@@ -74,9 +74,9 @@ public class PivotSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Pivot/" + "Output", m_pivotMotor.getAppliedOutput());
     SmartDashboard.putNumber("Pivot/" + "Current", m_pivotMotor.getOutputCurrent());
-    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Position", re_pivotMotor.getPosition());
-    SmartDashboard.putNumber("Pivot/" + "Absolute/" + "Position", ae_pivotMotor.getPosition());
-    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Velocity", re_pivotMotor.getVelocity());
-    SmartDashboard.putNumber("Pivot/" + "Absolute/" + "Velocity", ae_pivotMotor.getVelocity());
+    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Rel Position", re_pivotMotor.getPosition());
+    SmartDashboard.putNumber("Pivot/" + "Absolute/" + "Abs Position", ae_pivotMotor.getPosition());
+    SmartDashboard.putNumber("Pivot/" + "Relative/" + "Rel Velocity", re_pivotMotor.getVelocity());
+    SmartDashboard.putNumber("Pivot/" + "Absolute/" + "Abs Velocity", ae_pivotMotor.getVelocity());
   }
 }
