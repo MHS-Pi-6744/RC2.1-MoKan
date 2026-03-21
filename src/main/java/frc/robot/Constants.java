@@ -89,9 +89,9 @@ public final class Constants {
       public static final double kZeroOffest = .686; // units? For stationary testbed motor
 
       public static final double kPositionConversionFactorRel =
-          360/41; // Motor Rotation to Pivot Deg
+          360/40.91; // Motor Rotation to Pivot Deg
       public static final double kVelocityConversionFactorRel =
-          360/41; // Motor RPM to Pivot Deg/min
+          360/40.91; // Motor RPM to Pivot Deg/min
 
       public static final double kPositionConversionFactorAbs =
           360; // Encoder rotation to Pivot Deg
