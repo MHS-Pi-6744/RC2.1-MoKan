@@ -29,6 +29,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterSubsystemConstants;
 import frc.robot.Constants.VisionConstants;
 import frc.robot.Constants.canIDs;
+import frc.robot.motor_ctl.Flywheel;
 // Subsystems
 import frc.robot.motor_ctl.MotorController;
 // Constants
@@ -95,9 +96,9 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5));
+      new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5), m_shooter.stopFlywheel());
   private Command m_feeder_stop =
-      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor());
+      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.runRPM(100)); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -214,6 +215,7 @@ public class RobotContainer {
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
+
   }
 
   /**
