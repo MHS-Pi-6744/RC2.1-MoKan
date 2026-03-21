@@ -88,9 +88,12 @@ public final class Constants {
 
       public static final double kZeroOffest = .671; // units? For stationary testbed motor
 
-      public static final double kPositionConversionFactor =
-          360 / 41; // For stationary test bed motor in deg
-      public static final double kVelocityConversionFactor = 360 / 41; // This is deg/sec
+      public static final double kPositionConversionFactorRel = 360*36/66/25; // Motor Rotation to Pivot Deg
+      public static final double kVelocityConversionFactorRel = 360*26/66/25; // Motor RPM to Pivot Deg/min
+
+      public static final double kPositionConversionFactorAbs = 360; // Encoder rotation to Pivot Deg
+      public static final double kVelocityConversionFactorAbs = 360; // Encoder RPM to Pivot Deg/min
+
 
       public static final IdleMode kIdleMode = IdleMode.kCoast;
 
