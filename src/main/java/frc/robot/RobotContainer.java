@@ -6,7 +6,6 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -54,7 +53,16 @@ public class RobotContainer {
   private final PivotSubsystem m_pivot = new PivotSubsystem();
   private final MotorController m_intake =
       new MotorController(canIDs.kIntakeMotorCanId, IntakeConfigs.intakeConfig);
-  private final ShooterSubsystem m_shooter = new ShooterSubsystem(() -> m_robotDrive.getPose().getTranslation().getDistance((isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter)));
+  private final ShooterSubsystem m_shooter =
+      new ShooterSubsystem(
+          () ->
+              m_robotDrive
+                  .getPose()
+                  .getTranslation()
+                  .getDistance(
+                      (isRedAlliance()
+                          ? VisionConstants.kRedHubCenter
+                          : VisionConstants.kBluHubCenter)));
   private final MotorController m_feeder =
       new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(false));
   private final MotorController m_sucker =
@@ -204,9 +212,7 @@ public class RobotContainer {
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
     m_driverController
         .leftBumper()
-        .whileTrue(
-            new RepeatCommand(
-                m_shooter.smartShoot()))
+        .whileTrue(new RepeatCommand(m_shooter.smartShoot()))
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
