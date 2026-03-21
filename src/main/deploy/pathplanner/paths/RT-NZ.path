@@ -16,6 +16,22 @@
     },
     {
       "anchor": {
+        "x": 6.499710843373493,
+        "y": 0.5
+      },
+      "prevControl": {
+        "x": 5.995807320861495,
+        "y": 0.5
+      },
+      "nextControl": {
+        "x": 7.003614365885492,
+        "y": 0.5
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
         "x": 7.75,
         "y": 4.0
       },
@@ -42,7 +58,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 80.0
   },
   "reversed": false,
   "folder": "RT-",

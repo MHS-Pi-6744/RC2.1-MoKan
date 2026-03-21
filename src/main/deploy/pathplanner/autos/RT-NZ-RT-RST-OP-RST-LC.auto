@@ -55,9 +55,34 @@
           }
         },
         {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Go"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "path",
           "data": {
-            "pathName": "RT-HUB"
+            "pathName": "RT-RST"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 4.0
           }
         },
         {
@@ -67,7 +92,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Flywheel Go"
+                  "name": "Flywheel Stop"
                 }
               },
               {
@@ -86,13 +111,50 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "RST-OP"
+          }
+        },
+        {
           "type": "race",
           "data": {
             "commands": [
               {
                 "type": "named",
                 "data": {
-                  "name": "Flywheel Stop"
+                  "name": "Flywheel Go"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "OP-RST"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 4.0
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Feeder Stop"
                 }
               },
               {
