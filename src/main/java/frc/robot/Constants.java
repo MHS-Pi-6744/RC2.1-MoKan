@@ -86,7 +86,7 @@ public final class Constants {
 
       public static final int kCurrentLimit = 40;
 
-      public static final double kZeroOffest = .671; // rotations at the point of the encoder
+      public static final double kZeroOffest = .673; // rotations at the point of the encoder
 
       public static final double kPositionConversionFactor =
           360 / 41; // For stationary test bed motor in deg
@@ -248,6 +248,9 @@ public final class Constants {
                 Units.inchesToMeters(0),
                 Units.inchesToMeters(20.7281)),
             new Rotation3d(0, -(Math.PI / 6), 0));
+
+    public static final Translation2d kBluHubCenter = new Translation2d(4.625, 4.030);
+    public static final Translation2d kRedHubCenter = new Translation2d(11.920, 4.030);
 
     // The layout of the AprilTags on the field
     public static final AprilTagFieldLayout kTagLayout =

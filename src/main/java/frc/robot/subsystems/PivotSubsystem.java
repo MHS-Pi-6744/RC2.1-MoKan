@@ -46,14 +46,10 @@ public class PivotSubsystem extends SubsystemBase {
     re_pivotMotor = m_pivotMotor.getEncoder();
     ae_pivotMotor = m_pivotMotor.getAbsoluteEncoder();
 
-    cal();
+    re_pivotMotor.setPosition(ae_pivotMotor.getPosition());
 
     setTargetPosition(
         PivotSetPoints.kStartPosition); // set target position to start position and go there
-  }
-
-  public void cal() {
-    re_pivotMotor.setPosition(ae_pivotMotor.getPosition());
   }
 
   public void slowMoveBack() {
