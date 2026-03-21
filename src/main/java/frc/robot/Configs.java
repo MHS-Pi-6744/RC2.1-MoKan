@@ -85,14 +85,14 @@ public final class Configs {
           .inverted(false);
       pivotConfig
           .absoluteEncoder
-          .inverted(false)
+          .inverted(true)
           .zeroOffset(PivotSetPoints.kZeroOffest)
           .zeroCentered(false)
-          .positionConversionFactor(PivotSetPoints.kPositionConversionFactorAbs)  // Deg
+          .positionConversionFactor(PivotSetPoints.kPositionConversionFactorAbs) // Deg
           .velocityConversionFactor(PivotSetPoints.kVelocityConversionFactorAbs); // Deg/min
       pivotConfig
           .encoder
-          .positionConversionFactor(PivotSetPoints.kPositionConversionFactorRel)  //Deg
+          .positionConversionFactor(PivotSetPoints.kPositionConversionFactorRel) // Deg
           .velocityConversionFactor(PivotSetPoints.kVelocityConversionFactorRel); // Deg/min
       pivotConfig
           .closedLoop

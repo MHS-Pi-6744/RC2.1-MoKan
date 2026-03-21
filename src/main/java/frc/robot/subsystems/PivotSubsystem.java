@@ -62,10 +62,8 @@ public class PivotSubsystem extends SubsystemBase {
     p_pivotMotor.setSetpoint(-.5, ControlType.kMAXMotionPositionControl);
   }
 
-  public Command cal () {
-    return run(
-      () -> mcal()
-    );
+  public Command cal() {
+    return run(() -> mcal());
   }
 
   public Command setTargetPosition(double setpos) {
