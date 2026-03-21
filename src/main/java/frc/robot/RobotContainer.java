@@ -96,9 +96,9 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5), m_shooter.stopFlywheel());
+      new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5), m_shooter.runRPM(100));
   private Command m_feeder_stop =
-      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.runRPM(100)); 
+      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.stopFlywheel()); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
