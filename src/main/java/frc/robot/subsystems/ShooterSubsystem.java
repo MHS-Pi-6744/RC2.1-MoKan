@@ -8,15 +8,14 @@ import static frc.robot.Constants.ShooterSubsystemConstants.kCenterCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kLeftCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kRightCanId;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs.Default;
 import frc.robot.motor_ctl.Flywheel;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
