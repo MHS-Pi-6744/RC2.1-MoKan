@@ -8,6 +8,9 @@ import static frc.robot.Constants.ShooterSubsystemConstants.kCenterCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kLeftCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kRightCanId;
 
+import java.util.function.Supplier;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,11 +19,13 @@ import frc.robot.motor_ctl.Flywheel;
 
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
+  Supplier<Double> distance;
 
-  public ShooterSubsystem() {
+  public ShooterSubsystem(Supplier<Double> distance) {
     m_left = new Flywheel(kLeftCanId, Default.Config);
     m_center = new Flywheel(kCenterCanId, Default.Config);
     m_right = new Flywheel(kRightCanId, Default.Config.inverted(true));
+    this.distance = distance;
   }
 
   public Command runRPM(double rpm) {
@@ -43,9 +48,23 @@ public class ShooterSubsystem extends SubsystemBase {
   private double rpmFromDist(double x) {
     return 2236.23475 * Math.pow(1.1132, x);
   }
+  
+  private double rpmFromDist() {
+    return 2236.23475 * Math.pow(1.1132, distance.get());
+  }
 
   public Command smartShoot(double distance) {
     var rpm = rpmFromDist(distance);
     return runRPM(rpm);
+  }
+  
+  public Command smartShoot() {
+    var rpm = rpmFromDist();
+    return runRPM(rpm);
+  }
+
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("Distance From Hub", distance.get());
   }
 }

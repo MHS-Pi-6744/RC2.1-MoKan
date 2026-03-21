@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -53,7 +54,7 @@ public class RobotContainer {
   private final PivotSubsystem m_pivot = new PivotSubsystem();
   private final MotorController m_intake =
       new MotorController(canIDs.kIntakeMotorCanId, IntakeConfigs.intakeConfig);
-  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  private final ShooterSubsystem m_shooter = new ShooterSubsystem(() -> m_robotDrive.getPose().getTranslation().getDistance((isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter)));
   private final MotorController m_feeder =
       new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(false));
   private final MotorController m_sucker =
@@ -79,7 +80,7 @@ public class RobotContainer {
           RedAlliance.kLeftClimb, AutoConstants.kConstraints, 0.0 // Goal end velocity in meters/sec
           );
 
-  public boolean isRedAlliance() {
+  public static boolean isRedAlliance() {
     var alliance = DriverStation.getAlliance();
     if (alliance.isPresent()) return alliance.get() == DriverStation.Alliance.Red;
     return false;
@@ -103,7 +104,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
+    NamedCommands.registerCommand("Flywheel Go", m_shooter.smartShoot());
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
     NamedCommands.registerCommand("Feeder Go", m_feeder_run);
     NamedCommands.registerCommand("Feeder Stop", m_feeder_stop);
@@ -205,14 +206,7 @@ public class RobotContainer {
         .leftBumper()
         .whileTrue(
             new RepeatCommand(
-                m_shooter.smartShoot(
-                    m_robotDrive
-                        .getPose()
-                        .getTranslation()
-                        .getDistance(
-                            (isRedAlliance()
-                                ? VisionConstants.kRedHubCenter
-                                : VisionConstants.kBluHubCenter)))))
+                m_shooter.smartShoot()))
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
