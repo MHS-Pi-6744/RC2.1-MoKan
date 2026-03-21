@@ -8,17 +8,20 @@ import static frc.robot.Constants.ShooterSubsystemConstants.kCenterCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kLeftCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kRightCanId;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs.Default;
 import frc.robot.motor_ctl.Flywheel;
-import java.util.function.Supplier;
 
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
   Supplier<Double> distance;
+  Function<Double, Double> func = (x) -> 365 * x + 2236.23475;
 
   public ShooterSubsystem(Supplier<Double> distance) {
     m_left = new Flywheel(kLeftCanId, Default.Config);
@@ -44,14 +47,8 @@ public class ShooterSubsystem extends SubsystemBase {
         m_left.incrSet(increment), m_center.incrSet(increment), m_right.incrSet(increment));
   }
 
-  private double rpmFromDist(double x) {
-    var rpm = 365 * x + 2236.23475;
-    if (rpm >= 5000) return 5000;
-    return rpm;
-  }
-
   public Command smartShoot(double distance) {
-    var rpm = rpmFromDist(distance);
+    var rpm = func.apply(distance);
     SmartDashboard.putNumber("Shooter/Testing/Distance From Hub", distance);
     SmartDashboard.putNumber("Shooter/Testing/RPM Out", rpm);
     return runRPM(rpm);
@@ -66,5 +63,9 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    var rpm = func.apply(distance.get());
+    SmartDashboard.putNumber("Shooter/Testing/Distance From Hub", distance.get());
+    SmartDashboard.putNumber("Shooter/Testing/RPM Out", rpm);
+  }
 }
