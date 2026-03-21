@@ -66,8 +66,5 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-    SmartDashboard.putNumber("Shooter/" + "Distance From Hub", distance.get());
-    SmartDashboard.putNumber("Shooter/" + "RPM Out", rpmFromDist(distance.get()));
-  }
+  public void periodic() {}
 }
