@@ -85,7 +85,7 @@ public final class Configs {
           .inverted(false);
       pivotConfig
           .absoluteEncoder
-          .inverted(false)
+          .inverted(true)
           .zeroOffset(PivotSetPoints.kZeroOffest)
           .zeroCentered(false)
           .positionConversionFactor(360)

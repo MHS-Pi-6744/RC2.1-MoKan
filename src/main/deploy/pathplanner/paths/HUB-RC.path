@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.75,
-        "y": 3.5
+        "x": 2.5,
+        "y": 4.03
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.75,
-        "y": 2.468330801481399
+        "x": 2.5,
+        "y": 2.998330801481399
       },
       "isLocked": false,
       "linkedName": "HUB"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "HUB-",
