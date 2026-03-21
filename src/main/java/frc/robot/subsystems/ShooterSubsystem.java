@@ -65,7 +65,7 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     var rpm = func.apply(distance.get());
-    SmartDashboard.putNumber("Shooter/Testing/Distance From Hub", distance.get());
-    SmartDashboard.putNumber("Shooter/Testing/RPM Out", rpm);
+    SmartDashboard.putNumber("Shooter/Distance From Hub", distance.get());
+    SmartDashboard.putNumber("Shooter/RPM Out", rpm);
   }
 }
