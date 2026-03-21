@@ -24,8 +24,6 @@ public class PivotSubsystem extends SubsystemBase {
 
   private SparkClosedLoopController p_pivotMotor;
 
-  private double m_setPoint;
-
   public PivotSubsystem() {
     /*
      * Apply the appropriate configurations to the SPARKs.
