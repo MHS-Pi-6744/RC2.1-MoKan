@@ -99,8 +99,6 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    SmartDashboard.putData("Pivot/" + "Calibrate Pivot Rel Motor", m_pivot.cal());
-
     NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
     NamedCommands.registerCommand("Feeder Go", m_feeder_run);
@@ -203,6 +201,9 @@ public class RobotContainer {
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
+
+    m_copilotController.x().onTrue(m_pivot.cal(true));
+    m_copilotController.x().onFalse(m_pivot.cal(false));
   }
 
   /**
