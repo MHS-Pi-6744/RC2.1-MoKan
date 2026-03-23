@@ -254,6 +254,9 @@ public final class Constants {
                 Units.inchesToMeters(20.7281)),
             new Rotation3d(0, -(Math.PI / 6), 0));
 
+    public static final Translation2d kBluHubCenter = new Translation2d(4.625, 4.030);
+    public static final Translation2d kRedHubCenter = new Translation2d(11.920, 4.030);
+
     // The layout of the AprilTags on the field
     public static final AprilTagFieldLayout kTagLayout =
         AprilTagFieldLayout.loadField(AprilTagFields.kDefaultField);
