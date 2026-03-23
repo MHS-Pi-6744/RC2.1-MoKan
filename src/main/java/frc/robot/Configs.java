@@ -96,7 +96,7 @@ public final class Configs {
           .velocityConversionFactor(PivotSetPoints.kVelocityConversionFactorRel); // Deg/min
       pivotConfig
           .closedLoop
-          .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+          .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
           .pid(PivotSetPoints.kP, PivotSetPoints.kI, PivotSetPoints.kD)
           .outputRange(-1, 1)
           .maxMotion
