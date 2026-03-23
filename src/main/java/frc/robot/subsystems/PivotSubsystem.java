@@ -57,7 +57,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public void mcal(boolean caling) {
-    if(caling && ae_pivotMotor.getPosition() > PivotSetPoints.kStartPosition) {
+    if (caling && ae_pivotMotor.getPosition() > PivotSetPoints.kStartPosition) {
       re_pivotMotor.setPosition(ae_pivotMotor.getPosition());
       slowMoveBack();
     }
@@ -73,14 +73,13 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public Command setTargetPosition(double setpos) {
-    if (!m_calibrating){
+    if (!m_calibrating) {
       return run(
-        () ->
-            p_pivotMotor.setSetpoint(
-                setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
-      );
-    }
-    else{
+          () ->
+              p_pivotMotor.setSetpoint(
+                  setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
+          );
+    } else {
       return Commands.none();
     }
   }
