@@ -20,7 +20,11 @@ import java.util.function.Supplier;
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
   Supplier<Double> distance;
-  Function<Double, Double> func = (x) -> 365 * x + 2236.23475;
+  Function<Double, Double> func =
+      (x) -> {
+        var val = 365 * x + 2236.23475;
+        return val > 5000 ? 5000 : val;
+      };
 
   public ShooterSubsystem(Supplier<Double> distance) {
     m_left = new Flywheel(kLeftCanId, Default.Config);
@@ -46,19 +50,25 @@ public class ShooterSubsystem extends SubsystemBase {
         m_left.incrSet(increment), m_center.incrSet(increment), m_right.incrSet(increment));
   }
 
-  public Command smartShoot(double distance) {
+  public void rpmCtl(double rpm) {
+    m_left.rpmCtl(rpm);
+    m_center.rpmCtl(rpm);
+    m_right.rpmCtl(rpm);
+  }
+
+  public void smartShoot(double distance) {
     var rpm = func.apply(distance);
     SmartDashboard.putNumber("Shooter/Testing/Distance From Hub", distance);
     SmartDashboard.putNumber("Shooter/Testing/RPM Out", rpm);
-    return runRPM(rpm);
+    rpmCtl(rpm);
   }
 
-  public Command smartShoot(Supplier<Double> distance) {
-    return smartShoot(distance.get());
+  public void smartShoot(Supplier<Double> distance) {
+    smartShoot(distance.get());
   }
 
-  public Command smartShoot() {
-    return smartShoot(this.distance);
+  public void smartShoot() {
+    smartShoot(this.distance);
   }
 
   @Override

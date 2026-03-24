@@ -56,12 +56,12 @@ public class Flywheel extends SubsystemBase {
     e_ncoder.setPosition(0);
   }
 
-  private void rpmCtl(double rpm) {
+  public void rpmCtl(double rpm) {
     m_pidController.setSetpoint(rpm, ControlType.kVelocity);
   }
 
   public Command stopMotor() {
-    return run(() -> m_otor.setVoltage(0));
+    return run(() -> m_pidController.setSetpoint(0, ControlType.kVoltage));
   }
 
   public Command runRPM(double rpm) {
@@ -69,7 +69,7 @@ public class Flywheel extends SubsystemBase {
   }
 
   public Command runAtSet() {
-    return run(() -> rpmCtl(rpmSet));
+    return runRPM(rpmSet);
   }
 
   private void addToSet(double inc) {
@@ -92,7 +92,7 @@ public class Flywheel extends SubsystemBase {
     SmartDashboard.putBoolean(
         s_motorName + "At Setpoint?",
         m_pidController.getSetpoint() == 0
-            ? true
+            ? false
             : (e_ncoder.getVelocity() / m_pidController.getSetpoint()) > 0.95);
     SmartDashboard.putNumber(s_motorName + "Setpoint", m_pidController.getSetpoint());
 
