@@ -58,6 +58,10 @@ public class PivotSubsystem extends SubsystemBase {
         );
   }
 
+  public Command clearFaults() {
+      return run(() -> m_pivotMotor.clearFaults());
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Pivot/" + "Output", m_pivotMotor.getAppliedOutput());
