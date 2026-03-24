@@ -213,9 +213,6 @@ public class RobotContainer {
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
-
-    m_copilotController.x().onTrue(m_pivot.cal(true));
-    m_copilotController.x().onFalse(m_pivot.cal(false));
   }
 
   /**

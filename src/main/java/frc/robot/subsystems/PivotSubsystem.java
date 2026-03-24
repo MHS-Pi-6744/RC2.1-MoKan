@@ -10,7 +10,6 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
@@ -24,8 +23,6 @@ public class PivotSubsystem extends SubsystemBase {
   private AbsoluteEncoder ae_pivotMotor;
 
   private SparkClosedLoopController p_pivotMotor;
-
-  private boolean m_calibrating = false;
 
   public PivotSubsystem() {
     /*
@@ -49,39 +46,16 @@ public class PivotSubsystem extends SubsystemBase {
     re_pivotMotor = m_pivotMotor.getEncoder();
     ae_pivotMotor = m_pivotMotor.getAbsoluteEncoder();
 
-    mcal(true);
-    mcal(false);
-
     setTargetPosition(
         PivotSetPoints.kStartPosition); // set target position to start position and go there
   }
 
-  public void mcal(boolean caling) {
-    if (caling && ae_pivotMotor.getPosition() > PivotSetPoints.kStartPosition) {
-      re_pivotMotor.setPosition(ae_pivotMotor.getPosition());
-      slowMoveBack();
-    }
-  }
-
-  public void slowMoveBack() {
-    p_pivotMotor.setSetpoint(-.5, ControlType.kMAXMotionPositionControl);
-  }
-
-  public Command cal(boolean calibrating) {
-    m_calibrating = calibrating;
-    return run(() -> mcal(calibrating));
-  }
-
   public Command setTargetPosition(double setpos) {
-    if (!m_calibrating) {
       return run(
-          () ->
-              p_pivotMotor.setSetpoint(
-                  setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
-          );
-    } else {
-      return Commands.none();
-    }
+        () ->
+          p_pivotMotor.setSetpoint(
+            setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
+      );
   }
 
   @Override
