@@ -101,7 +101,7 @@ public final class Constants {
 
       public static final double kMaxVelocity = 24000; // degrees per min
       public static final double kMaxAcceleration = 16200; // Units deg/min/sec
-      public static final double kPositionTolerance = 50; // Units deg
+      public static final double kPositionTolerance = 25; // Units deg
 
       // PID gains ======== Will need to be tuned when operating on the climber -Sr
       public static final double kP = 0.00750000;
