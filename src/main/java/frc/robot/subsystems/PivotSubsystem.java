@@ -51,11 +51,11 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public Command setTargetPosition(double setpos) {
-      return run(
+    return run(
         () ->
-          p_pivotMotor.setSetpoint(
-            setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
-      );
+            p_pivotMotor.setSetpoint(
+                setpos, ControlType.kMAXMotionPositionControl) // USING PID POSITION CONTROL
+        );
   }
 
   @Override
