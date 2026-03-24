@@ -59,7 +59,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public Command clearFaults() {
-      return run(() -> m_pivotMotor.clearFaults());
+    return run(() -> m_pivotMotor.clearFaults());
   }
 
   @Override

@@ -80,7 +80,7 @@ public class MotorController extends SubsystemBase {
   }
 
   public Command clearFaults() {
-      return run(() -> m_otor.clearFaults());
+    return run(() -> m_otor.clearFaults());
   }
 
   @Override

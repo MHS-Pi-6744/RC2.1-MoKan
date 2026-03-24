@@ -125,8 +125,12 @@ public class MAXSwerveModule {
   public void voltageDrive(Voltage volts) {
     m_drivingSpark.setVoltage(volts);
   }
-  
+
   public Command clearFaults() {
-      return new RunCommand(() -> {m_turningSpark.clearFaults();m_drivingSpark.clearFaults();});
+    return new RunCommand(
+        () -> {
+          m_turningSpark.clearFaults();
+          m_drivingSpark.clearFaults();
+        });
   }
 }
