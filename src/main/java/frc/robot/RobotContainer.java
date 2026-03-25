@@ -110,7 +110,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
+    NamedCommands.registerCommand("Flywheel Go", m_shooter.smartShootCommand());
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
     NamedCommands.registerCommand("Feeder Go", m_feeder_run);
     NamedCommands.registerCommand("Feeder Stop", m_feeder_stop);
@@ -210,7 +210,7 @@ public class RobotContainer {
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
     m_driverController
         .leftBumper()
-        .whileTrue(new RunCommand(() -> m_shooter.smartShoot(this::getDistanceToTeamHub)))
+        .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
