@@ -17,7 +17,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.0
+                  "waitTime": 0
                 }
               }
             ]
@@ -26,13 +26,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LT-NZ"
+            "pathName": "TEMP RT-NZ"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "NZ-LT"
+            "pathName": " TEMP NZ-RT"
           }
         },
         {
@@ -76,7 +76,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LT-LST"
+            "pathName": "RT-RST"
           }
         },
         {
@@ -105,15 +105,15 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "LST-OP"
-          }
-        },
-        {
           "type": "wait",
           "data": {
             "waitTime": 4.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RST-OP"
           }
         },
         {
@@ -138,7 +138,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "OP-LST"
+            "pathName": "OP-RST"
           }
         },
         {
@@ -154,7 +154,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Flywheel Stop"
+                  "name": "Feeder Stop"
                 }
               },
               {
@@ -170,6 +170,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Comp Autos",
   "choreoAuto": false
 }
