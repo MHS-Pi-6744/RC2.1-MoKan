@@ -103,9 +103,17 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(m_sucker.setSpeed(0.5), m_feeder.setSpeed(0.5));
+      new ParallelCommandGroup(
+          m_sucker.setSpeed(1.0),
+          m_feeder.setSpeed(1.0),
+          m_shooter.runRPM(900),
+          m_intake.runMotor(1));
   private Command m_feeder_stop =
-      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor());
+      new ParallelCommandGroup(
+          m_sucker.stopMotor(),
+          m_feeder.stopMotor(),
+          m_shooter.stopFlywheel(),
+          m_intake.stopMotor());
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -129,7 +137,7 @@ public class RobotContainer {
     drivingMode = DrivingMode.kNormal;
 
     // Build an auto chooser. This will use Commands.none() as the default option.
-    autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser = new SendableChooser<Command>(); // AutoBuilder.buildAutoChooser();
     autoChooser.addOption("Pathfind Left Climb Red", pathfindLeftClimbRed);
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
