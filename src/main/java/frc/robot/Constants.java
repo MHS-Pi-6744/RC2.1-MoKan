@@ -154,11 +154,12 @@ public final class Constants {
     public static final double kMaxAngularAcceleration =
         1.5 * Math.PI; // 2 * Math.PI; // radians per second
 
-    // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(28);
+    /// Chassis configuration
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(28);
+    public static final double kTrackWidth = Units.inchesToMeters(24);
     // Distance between front and back wheels on robot
+    public static final double kWheelBase = Units.inchesToMeters(24);
+
     public static final SwerveDriveKinematics kDriveKinematics =
         new SwerveDriveKinematics(
             new Translation2d(kWheelBase / 2, kTrackWidth / 2),
