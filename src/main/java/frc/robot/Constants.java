@@ -73,13 +73,9 @@ public final class Constants {
     public static final double kIntakeSpeed = 0.6; // Intake speed Units are percentage
 
     public static final class PivotSetPoints {
+      
       public static final double kStartPosition = 7; // to stay away from zero encoder reading
-
       public static final double kMiddlePosition = 40;
-
-      /**
-       * @apiNote DEGREES
-       */
       public static final double kEndPosition = 103;
 
       public static final int kCurrentLimit = 40;
