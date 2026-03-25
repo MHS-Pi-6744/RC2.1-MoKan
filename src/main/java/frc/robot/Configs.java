@@ -5,7 +5,7 @@ import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.MAXMotionConfig.MAXMotionPositionMode;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
-import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
+import frc.robot.Constants.IntakeConstants.PivotSetPoints;
 import frc.robot.Constants.ModuleConstants;
 
 public final class Configs {

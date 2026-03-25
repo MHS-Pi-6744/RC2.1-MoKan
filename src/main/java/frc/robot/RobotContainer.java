@@ -24,7 +24,8 @@ import frc.robot.Configs.IntakeConfigs;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.AutoConstants.BlueAlliance;
 import frc.robot.Constants.AutoConstants.RedAlliance;
-import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
+import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.IntakeConstants.PivotSetPoints;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterSubsystemConstants;
 import frc.robot.Constants.VisionConstants;
@@ -95,17 +96,15 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(
-          m_sucker.setSpeed(1.0),
-          m_feeder.setSpeed(1.0),
-          m_shooter.runRPM(900),
-          m_intake.runMotor(1));
+      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0));
   private Command m_feeder_stop =
+      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor());
+  private Command waterfallRun =
       new ParallelCommandGroup(
-          m_sucker.stopMotor(),
-          m_feeder.stopMotor(),
-          m_shooter.stopFlywheel(),
-          m_intake.stopMotor());
+          m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), m_shooter.runRPM(900));
+  private Command waterfallStop =
+      new ParallelCommandGroup(
+          m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.stopFlywheel());
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -212,11 +211,11 @@ public class RobotContainer {
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController
         .rightBumper()
-        .whileTrue(m_intake.runMotor(1))
+        .whileTrue(m_intake.runMotor(IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController
         .leftBumper()
-        .whileTrue(m_intake.runMotor(-1))
+        .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
