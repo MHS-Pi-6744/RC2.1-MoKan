@@ -357,7 +357,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public Command resetGyro() {
-    return run(() -> zeroHeading());
+    return runOnce(() -> zeroHeading());
   }
 
   /**
