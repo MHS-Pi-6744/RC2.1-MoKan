@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
-import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
+import frc.robot.Constants.IntakeConstants.PivotSetPoints;
 import frc.robot.Constants.canIDs;
 
 public class PivotSubsystem extends SubsystemBase {
