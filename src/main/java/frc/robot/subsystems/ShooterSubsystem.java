@@ -76,6 +76,11 @@ public class ShooterSubsystem extends SubsystemBase {
   public Command smartShootCommand() {
     return new RunCommand(() -> smartShoot(this.distance));
   }
+  
+  public Command clearFaults() {
+    return new ParallelCommandGroup(
+        m_left.clearFaults(), m_center.clearFaults(), m_right.clearFaults());
+  }
 
   @Override
   public void periodic() {
