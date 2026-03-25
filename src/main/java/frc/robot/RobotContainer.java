@@ -96,17 +96,11 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(
-          m_sucker.setSpeed(1.0),
-          m_feeder.setSpeed(1.0),
-          m_shooter.runRPM(900),
-          m_intake.runMotor(IntakeConstants.kIntakeSpeed));
+      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0));
   private Command m_feeder_stop =
-      new ParallelCommandGroup(
-          m_sucker.stopMotor(),
-          m_feeder.stopMotor(),
-          m_shooter.stopFlywheel(),
-          m_intake.stopMotor());
+      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor());
+  private Command waterfallRun = new ParallelCommandGroup(m_feeder_run, m_shooter.runRPM(900));
+  private Command waterfallStop = new ParallelCommandGroup(m_feeder_stop, m_shooter.stopFlywheel());
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
