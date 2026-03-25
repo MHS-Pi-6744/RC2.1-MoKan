@@ -121,7 +121,11 @@
               "topic": "/CameraPublisher/Photon-RubikPi-2_Port_1181_Input_MJPEG_Server",
               "period": 0.06,
               "rotation_turns": 0,
-              "fps": 30
+              "fps": 30,
+              "resolution": [
+                320.0,
+                240.0
+              ]
             }
           }
         ]
