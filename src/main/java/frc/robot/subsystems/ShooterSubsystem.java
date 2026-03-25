@@ -59,8 +59,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void smartShoot(double distance) {
     var rpm = func.apply(distance);
-    SmartDashboard.putNumber("Shooter/Testing/Distance From Hub", distance);
-    SmartDashboard.putNumber("Shooter/Testing/RPM Out", rpm);
     rpmCtl(rpm);
   }
 
@@ -84,7 +82,6 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     var rpm = func.apply(distance.get());
-    SmartDashboard.putNumber("Shooter/Distance From Hub", distance.get());
     SmartDashboard.putNumber("Shooter/RPM Out", rpm);
   }
 }

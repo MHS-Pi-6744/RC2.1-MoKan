@@ -61,7 +61,7 @@ public class Flywheel extends SubsystemBase {
   }
 
   public Command stopMotor() {
-    return run(() -> m_pidController.setSetpoint(0, ControlType.kVoltage));
+    return run(() -> m_pidController.setSetpoint(0, ControlType.kVelocity));
   }
 
   public Command runRPM(double rpm) {
