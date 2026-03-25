@@ -125,23 +125,6 @@ public final class Constants {
     public static final int kLeftCanId = 17;
 
     public static final int kSuckerCanId = 16;
-
-    public static final class FeederSetpoints {
-      public static final double kFeed = 0.15;
-    }
-
-    // Check these units - it looks to me like ShooterSubsystem is controlling in
-    // RPM??? Sr
-    public static final class FlywheelSetpoints {
-
-      /**
-       * @apiNote This controls how much the shooter will spin
-       * @apiNote PERCENTAGE
-       */
-      public static final double kShootPercent = 50;
-
-      public static final double kVelocityTolerance = 100;
-    }
   }
 
   public static final class DriveConstants {
