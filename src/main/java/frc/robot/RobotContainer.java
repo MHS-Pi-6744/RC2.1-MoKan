@@ -22,10 +22,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Configs.Default;
 import frc.robot.Configs.IntakeConfigs;
 import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.IntakeSubsystemConstants;
 import frc.robot.Constants.AutoConstants.BlueAlliance;
 import frc.robot.Constants.AutoConstants.RedAlliance;
-import frc.robot.Constants.IntakeSubsystemConstants.PivotSetPoints;
+import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.IntakeConstants.PivotSetPoints;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterSubsystemConstants;
 import frc.robot.Constants.VisionConstants;
@@ -51,33 +51,37 @@ public class RobotContainer {
   // private final IntakeSubsystem m_intake = new IntakeSubsystem();
   private final Vision vision = new Vision(m_robotDrive::addVisionMeasurement);
   private final PivotSubsystem m_pivot = new PivotSubsystem();
-  private final MotorController m_intake = new MotorController(canIDs.kIntakeMotorCanId, IntakeConfigs.intakeConfig);
+  private final MotorController m_intake =
+      new MotorController(canIDs.kIntakeMotorCanId, IntakeConfigs.intakeConfig);
   private final ShooterSubsystem m_shooter = new ShooterSubsystem();
-  private final MotorController m_feeder = new MotorController(canIDs.kFeederMotorCanId,
-      Default.Config.inverted(false));
-  private final MotorController m_sucker = new MotorController(ShooterSubsystemConstants.kSuckerCanId,
-      Default.Config.inverted(true));
+  private final MotorController m_feeder =
+      new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(false));
+  private final MotorController m_sucker =
+      new MotorController(ShooterSubsystemConstants.kSuckerCanId, Default.Config.inverted(true));
 
   private final SendableChooser<Command> autoChooser;
 
   // The driver's controller
-  public CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
-  public CommandXboxController m_copilotController = new CommandXboxController(OIConstants.kCopilotControllerPort);
+  public CommandXboxController m_driverController =
+      new CommandXboxController(OIConstants.kDriverControllerPort);
+  public CommandXboxController m_copilotController =
+      new CommandXboxController(OIConstants.kCopilotControllerPort);
 
-  Command pathfindLeftClimbBlue = AutoBuilder.pathfindToPose(
-      BlueAlliance.kLeftClimb,
-      AutoConstants.kConstraints,
-      0.0 // Goal end velocity in meters/sec
-  );
+  Command pathfindLeftClimbBlue =
+      AutoBuilder.pathfindToPose(
+          BlueAlliance.kLeftClimb,
+          AutoConstants.kConstraints,
+          0.0 // Goal end velocity in meters/sec
+          );
 
-  Command pathfindLeftClimbRed = AutoBuilder.pathfindToPose(
-      RedAlliance.kLeftClimb, AutoConstants.kConstraints, 0.0 // Goal end velocity in meters/sec
-  );
+  Command pathfindLeftClimbRed =
+      AutoBuilder.pathfindToPose(
+          RedAlliance.kLeftClimb, AutoConstants.kConstraints, 0.0 // Goal end velocity in meters/sec
+          );
 
   public boolean isRedAlliance() {
     var alliance = DriverStation.getAlliance();
-    if (alliance.isPresent())
-      return alliance.get() == DriverStation.Alliance.Red;
+    if (alliance.isPresent()) return alliance.get() == DriverStation.Alliance.Red;
     return false;
   }
 
@@ -91,20 +95,20 @@ public class RobotContainer {
 
   private DrivingMode drivingMode;
 
-  private Command m_feeder_run = new ParallelCommandGroup(
-      m_sucker.setSpeed(1.0),
-      m_feeder.setSpeed(1.0),
-      m_shooter.runRPM(900),
-      m_intake.runMotor(IntakeSubsystemConstants.kIntakeSpeed));
-  private Command m_feeder_stop = new ParallelCommandGroup(
-      m_sucker.stopMotor(),
-      m_feeder.stopMotor(),
-      m_shooter.stopFlywheel(),
-      m_intake.stopMotor());
+  private Command m_feeder_run =
+      new ParallelCommandGroup(
+          m_sucker.setSpeed(1.0),
+          m_feeder.setSpeed(1.0),
+          m_shooter.runRPM(900),
+          m_intake.runMotor(IntakeConstants.kIntakeSpeed));
+  private Command m_feeder_stop =
+      new ParallelCommandGroup(
+          m_sucker.stopMotor(),
+          m_feeder.stopMotor(),
+          m_shooter.stopFlywheel(),
+          m_intake.stopMotor());
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
@@ -136,15 +140,16 @@ public class RobotContainer {
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
-            () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(
-                    m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(
-                    m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(
-                    getDriveRot(),
-                    drivingMode == DrivingMode.kTagAssisted ? 0.0 : OIConstants.kDriveDeadband),
-                true),
+            () ->
+                m_robotDrive.drive(
+                    -MathUtil.applyDeadband(
+                        m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                    -MathUtil.applyDeadband(
+                        m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                    -MathUtil.applyDeadband(
+                        getDriveRot(),
+                        drivingMode == DrivingMode.kTagAssisted ? 0.0 : OIConstants.kDriveDeadband),
+                    true),
             m_robotDrive,
             vision));
     // */
@@ -173,11 +178,11 @@ public class RobotContainer {
         return m_driverController.getRightX();
       case kTagAssisted:
         var robot_pose = m_robotDrive.getPose();
-        var target_pose = isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
+        var target_pose =
+            isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
         var a = target_pose.getX() - robot_pose.getX();
         var o = target_pose.getY() - robot_pose.getY();
-        if (a == 0)
-          return 0;
+        if (a == 0) return 0;
         var target_angle = Math.atan2(o, a);
         var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
         return -diff / 180;
@@ -208,11 +213,11 @@ public class RobotContainer {
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController
         .rightBumper()
-        .whileTrue(m_intake.runMotor(IntakeSubsystemConstants.kIntakeSpeed))
+        .whileTrue(m_intake.runMotor(IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController
         .leftBumper()
-        .whileTrue(m_intake.runMotor(-IntakeSubsystemConstants.kIntakeSpeed))
+        .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
