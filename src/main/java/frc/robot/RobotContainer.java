@@ -53,7 +53,7 @@ public class RobotContainer {
   private final PivotSubsystem m_pivot = new PivotSubsystem();
   private final MotorController m_intake =
       new MotorController(canIDs.kIntakeMotorCanId, IntakeConfigs.intakeConfig);
-  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  private final ShooterSubsystem m_shooter = new ShooterSubsystem(this::getDistanceToTeamHub);
   private final MotorController m_feeder =
       new MotorController(canIDs.kFeederMotorCanId, Default.Config.inverted(false));
   private final MotorController m_sucker =
@@ -79,10 +79,18 @@ public class RobotContainer {
           RedAlliance.kLeftClimb, AutoConstants.kConstraints, 0.0 // Goal end velocity in meters/sec
           );
 
-  public boolean isRedAlliance() {
+  public static boolean isRedAlliance() {
     var alliance = DriverStation.getAlliance();
     if (alliance.isPresent()) return alliance.get() == DriverStation.Alliance.Red;
     return false;
+  }
+
+  public double getDistanceToTeamHub() {
+    return m_robotDrive
+        .getPose()
+        .getTranslation()
+        .getDistance(
+            (isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter));
   }
 
   Trigger onBlueAlliance = new Trigger(() -> !isRedAlliance());
@@ -108,7 +116,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    NamedCommands.registerCommand("Flywheel Go", m_shooter.runRPM(2750));
+
+    NamedCommands.registerCommand("Flywheel Go", m_shooter.smartShootCommand());
     NamedCommands.registerCommand("Flywheel Stop", m_shooter.stopFlywheel());
     NamedCommands.registerCommand("Feeder Go", m_feeder_run);
     NamedCommands.registerCommand("Feeder Stop", m_feeder_stop);
@@ -206,7 +215,10 @@ public class RobotContainer {
     m_driverController.povDown().onTrue(m_shooter.incrementSetpoint(-250));
     m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
-    m_driverController.rightBumper().onTrue(m_shooter.runAtSet()).onFalse(m_shooter.stopFlywheel());
+    m_driverController
+        .leftBumper()
+        .whileTrue(m_shooter.smartShootCommand())
+        .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController
