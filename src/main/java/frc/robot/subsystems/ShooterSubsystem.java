@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Configs.Default;
 import frc.robot.motor_ctl.Flywheel;
 import java.util.function.Function;
@@ -77,6 +78,14 @@ public class ShooterSubsystem extends SubsystemBase {
   public Command clearFaults() {
     return new ParallelCommandGroup(
         m_left.clearFaults(), m_center.clearFaults(), m_right.clearFaults());
+  }
+
+  public boolean atSetpoint() {
+    return m_left.atSetpoint() || m_center.atSetpoint() || m_right.atSetpoint();
+  }
+
+  public Trigger setpointAchieved() {
+    return new Trigger(this::atSetpoint);
   }
 
   @Override

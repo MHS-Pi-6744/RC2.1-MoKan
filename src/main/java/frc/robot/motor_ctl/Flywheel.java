@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class Flywheel extends SubsystemBase {
   // The shooter motor
@@ -85,6 +86,16 @@ public class Flywheel extends SubsystemBase {
     return runOnce(() -> m_otor.clearFaults());
   }
 
+  public boolean atSetpoint() {
+    return m_pidController.getSetpoint() == 0
+        ? false
+        : (e_ncoder.getVelocity() / m_pidController.getSetpoint()) > 0.95;
+  }
+
+  public Trigger setpointAchieved() {
+    return new Trigger(this::atSetpoint);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -94,11 +105,7 @@ public class Flywheel extends SubsystemBase {
     SmartDashboard.putNumber(s_motorName + "Position", e_ncoder.getPosition());
     SmartDashboard.putNumber(s_motorName + "Velocity", e_ncoder.getVelocity());
 
-    SmartDashboard.putBoolean(
-        s_motorName + "At Setpoint?",
-        m_pidController.getSetpoint() == 0
-            ? false
-            : (e_ncoder.getVelocity() / m_pidController.getSetpoint()) > 0.95);
+    SmartDashboard.putBoolean(s_motorName + "At Setpoint?", atSetpoint());
     SmartDashboard.putNumber(s_motorName + "Setpoint", m_pidController.getSetpoint());
 
     SmartDashboard.putNumber(s_motorName + "Internal Setpoint", rpmSet);
