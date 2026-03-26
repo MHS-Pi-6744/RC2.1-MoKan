@@ -6,7 +6,6 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -105,9 +104,13 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), new InstantCommand(() -> driveTagAssisted()));
+      new ParallelCommandGroup(
+          m_sucker.setSpeed(1.0),
+          m_feeder.setSpeed(1.0),
+          new InstantCommand(() -> driveTagAssisted()));
   private Command m_feeder_stop =
-      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()));
+      new ParallelCommandGroup(
+          m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()));
   private Command waterfallRun =
       new ParallelCommandGroup(
           m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), m_shooter.runRPM(900));
