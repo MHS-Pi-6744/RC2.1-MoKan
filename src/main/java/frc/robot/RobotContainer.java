@@ -216,7 +216,7 @@ public class RobotContainer {
     m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
     m_driverController
-        .leftBumper()
+        .rightBumper()
         .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
