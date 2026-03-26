@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -96,9 +97,9 @@ public class RobotContainer {
   private DrivingMode drivingMode;
 
   private Command m_feeder_run =
-      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0));
+      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), new InstantCommand(() -> driveTagAssisted()));
   private Command m_feeder_stop =
-      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor());
+      new ParallelCommandGroup(m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()));
   private Command waterfallRun =
       new ParallelCommandGroup(
           m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), m_shooter.runRPM(900));
@@ -198,10 +199,6 @@ public class RobotContainer {
     // m_driverController.start()
     // .onTrue(new InstantCommand(() ->
     // m_robotDrive.resetPose(vision.getPose2d())));
-    m_driverController
-        .a()
-        .onTrue(new InstantCommand(() -> driveTagAssisted()))
-        .onFalse(new InstantCommand(() -> driveNormal()));
     m_driverController.povUp().onTrue(m_shooter.incrementSetpoint(250));
     m_driverController.povDown().onTrue(m_shooter.incrementSetpoint(-250));
     m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
