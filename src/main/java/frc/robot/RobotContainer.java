@@ -196,7 +196,7 @@ public class RobotContainer {
         if (a == 0) return 0;
         var target_angle = Math.atan2(o, a);
         var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
-        return -diff / 180;
+        return (diff / -180) * 1.5;
       default:
         return m_driverController.getRightX();
     }
