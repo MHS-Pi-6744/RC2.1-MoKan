@@ -221,17 +221,17 @@ public class RobotContainer {
         .onFalse(m_shooter.stopFlywheel());
     m_copilotController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
-    m_copilotController
-        .rightBumper()
+    m_driverController
+        .leftTrigger()
         .whileTrue(m_intake.runMotor(IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
-    m_copilotController
-        .leftBumper()
+    m_driverController
+        .rightTrigger()
         .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
-    m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
-    m_copilotController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
-    m_copilotController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
+    m_driverController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
+    m_driverController.b().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
+    m_driverController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
   }
 
   /**
