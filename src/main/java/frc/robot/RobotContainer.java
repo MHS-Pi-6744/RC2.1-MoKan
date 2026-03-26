@@ -222,11 +222,11 @@ public class RobotContainer {
     m_copilotController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_driverController
-        .leftTrigger()
+        .rightTrigger()
         .whileTrue(m_intake.runMotor(IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_driverController
-        .rightTrigger()
+        .leftTrigger()
         .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_driverController.rightBumper().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
