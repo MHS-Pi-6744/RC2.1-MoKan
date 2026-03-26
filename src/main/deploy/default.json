@@ -109,6 +109,24 @@
               "topic": "/FMSInfo",
               "period": 0.06
             }
+          },
+          {
+            "title": "Photon-RubikPi-2_Port_1181_Input_MJPEG_Server",
+            "x": 384.0,
+            "y": 0.0,
+            "width": 768.0,
+            "height": 384.0,
+            "type": "Camera Stream",
+            "properties": {
+              "topic": "/CameraPublisher/Photon-RubikPi-2_Port_1181_Input_MJPEG_Server",
+              "period": 0.06,
+              "rotation_turns": 0,
+              "fps": 30,
+              "resolution": [
+                320.0,
+                240.0
+              ]
+            }
           }
         ]
       }
@@ -219,6 +237,20 @@
               "false_color": 4294151080,
               "true_icon": "Checkmark",
               "false_icon": "X"
+            }
+          },
+          {
+            "title": "Photon-RubikPi-2_Port_1181_Input_MJPEG_Server",
+            "x": 384.0,
+            "y": 0.0,
+            "width": 768.0,
+            "height": 384.0,
+            "type": "Camera Stream",
+            "properties": {
+              "topic": "/CameraPublisher/Photon-RubikPi-2_Port_1181_Input_MJPEG_Server",
+              "period": 0.06,
+              "rotation_turns": 0,
+              "fps": 30
             }
           }
         ]

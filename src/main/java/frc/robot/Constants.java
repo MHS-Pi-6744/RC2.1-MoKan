@@ -65,23 +65,17 @@ public final class Constants {
     // Others? PHD, RoboRio?
   }
 
-  public static final class IntakeSubsystemConstants {
+  public static final class IntakeConstants {
 
-    public static final class IntakeSetpoints {
-      /**
-       * @apiNote The Command for setting the motor speed
-       */
-      public static final double kIntake = 1; // Intake speed Units are percentage
-    }
+    /**
+     * @apiNote The Command for setting the motor speed
+     */
+    public static final double kIntakeSpeed = 0.6; // Intake speed Units are percentage
 
     public static final class PivotSetPoints {
+
       public static final double kStartPosition = 7; // to stay away from zero encoder reading
-
       public static final double kMiddlePosition = 40;
-
-      /**
-       * @apiNote DEGREES
-       */
       public static final double kEndPosition = 103;
 
       public static final int kCurrentLimit = 40;
@@ -125,23 +119,6 @@ public final class Constants {
     public static final int kLeftCanId = 17;
 
     public static final int kSuckerCanId = 16;
-
-    public static final class FeederSetpoints {
-      public static final double kFeed = 0.15;
-    }
-
-    // Check these units - it looks to me like ShooterSubsystem is controlling in
-    // RPM??? Sr
-    public static final class FlywheelSetpoints {
-
-      /**
-       * @apiNote This controls how much the shooter will spin
-       * @apiNote PERCENTAGE
-       */
-      public static final double kShootPercent = 50;
-
-      public static final double kVelocityTolerance = 100;
-    }
   }
 
   public static final class DriveConstants {
@@ -154,11 +131,12 @@ public final class Constants {
     public static final double kMaxAngularAcceleration =
         1.5 * Math.PI; // 2 * Math.PI; // radians per second
 
-    // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(28);
+    /// Chassis configuration
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(28);
+    public static final double kTrackWidth = Units.inchesToMeters(24);
     // Distance between front and back wheels on robot
+    public static final double kWheelBase = Units.inchesToMeters(24);
+
     public static final SwerveDriveKinematics kDriveKinematics =
         new SwerveDriveKinematics(
             new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -197,7 +175,7 @@ public final class Constants {
     // The MAXSwerve module can be configured with one of three pinion gears: 12T,
     // 13T, or 14T. This changes the drive speed of the module (a pinion gear with
     // more teeth will result in a robot that drives faster).
-    public static final int kDrivingMotorPinionTeeth = 12;
+    public static final int kDrivingMotorPinionTeeth = 14;
 
     // Calculations required for driving motor conversion factors and feed forward
     public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60;
