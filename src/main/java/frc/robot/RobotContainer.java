@@ -215,18 +215,18 @@ public class RobotContainer {
     m_driverController.povDown().onTrue(m_shooter.incrementSetpoint(-250));
     m_driverController.povRight().onTrue(m_shooter.incrementSetpoint(10));
     m_driverController.povLeft().onTrue(m_shooter.incrementSetpoint(-10));
-    m_driverController
-        .rightBumper()
+    m_copilotController
+        .rightTrigger()
         .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
     m_driverController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_copilotController
-        .rightBumper()
+        .leftBumper()
         .whileTrue(m_intake.runMotor(IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController
-        .leftBumper()
+        .rightBumper()
         .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
     m_copilotController.y().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
