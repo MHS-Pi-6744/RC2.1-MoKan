@@ -178,6 +178,26 @@ public class RobotContainer {
     drivingMode = DrivingMode.kNormal;
   }
 
+  private boolean isFacingHub() {
+    return getAngleToHub() < 0.1;
+  }
+
+  private Trigger facingHub() {
+    return new Trigger(this::isFacingHub);
+  }
+
+  private double getAngleToHub() {
+    var robot_pose = m_robotDrive.getPose();
+    var target_pose =
+        isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
+    var a = target_pose.getX() - robot_pose.getX();
+    var o = target_pose.getY() - robot_pose.getY();
+    if (a == 0) return 0;
+    var target_angle = Math.atan2(o, a);
+    var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
+    return diff;
+  }
+
   /**
    * Gets the rotation of the robot based on the driving mode
    *
@@ -188,15 +208,7 @@ public class RobotContainer {
       case kNormal:
         return m_driverController.getRightX();
       case kTagAssisted:
-        var robot_pose = m_robotDrive.getPose();
-        var target_pose =
-            isRedAlliance() ? VisionConstants.kRedHubCenter : VisionConstants.kBluHubCenter;
-        var a = target_pose.getX() - robot_pose.getX();
-        var o = target_pose.getY() - robot_pose.getY();
-        if (a == 0) return 0;
-        var target_angle = Math.atan2(o, a);
-        var diff = Units.radiansToDegrees(target_angle) - robot_pose.getRotation().getDegrees();
-        return (diff / -180) * 1.5;
+        return (getAngleToHub() / -180) * 1.5;
       default:
         return m_driverController.getRightX();
     }
@@ -219,7 +231,7 @@ public class RobotContainer {
         .rightTrigger()
         .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
-    m_copilotController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
+    m_copilotController.x().and(facingHub()).onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_driverController
         .rightTrigger()
@@ -229,7 +241,9 @@ public class RobotContainer {
         .leftTrigger()
         .whileTrue(m_intake.runMotor(-IntakeConstants.kIntakeSpeed))
         .whileFalse(m_intake.stopMotor());
-    m_driverController.rightBumper().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
+    m_driverController
+        .rightBumper()
+        .onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
     m_driverController.x().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_driverController.leftBumper().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
   }
