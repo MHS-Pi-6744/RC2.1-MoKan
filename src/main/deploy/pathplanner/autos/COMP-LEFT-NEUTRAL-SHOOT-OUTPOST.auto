@@ -32,7 +32,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "NZ-LT"
+            "pathName": "LT-NZ#2"
           }
         },
         {
@@ -170,6 +170,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Comp Autos",
+  "folder": null,
   "choreoAuto": false
 }

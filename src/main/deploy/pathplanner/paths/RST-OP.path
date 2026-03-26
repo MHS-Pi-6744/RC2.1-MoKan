@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.83,
-        "y": 0.65
+        "x": 0.5003975903614455,
+        "y": 0.4725662650602419
       },
       "prevControl": {
-        "x": 0.8561450786658071,
-        "y": 2.485144587181976
+        "x": 0.5265426690272527,
+        "y": 2.307710852242218
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "RST-",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 29.999999999999996

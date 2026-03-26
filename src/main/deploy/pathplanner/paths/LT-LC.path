@@ -3,91 +3,83 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.412518072289157,
-        "y": 7.25867469879518
+        "x": 3.8333493975903608,
+        "y": 7.553722891566265
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.2609047292819473,
-        "y": 7.25867469879518
+        "x": 2.6094457831325304,
+        "y": 7.291457831325301
       },
       "isLocked": false,
-      "linkedName": "LT"
+      "linkedName": "Lt-shoot"
     },
     {
       "anchor": {
-        "x": 2.5,
-        "y": 6.0
+        "x": 2.0412048192771084,
+        "y": 5.007566265060241
       },
       "prevControl": {
-        "x": 2.5,
-        "y": 7.194752267120009
+        "x": 2.8341336667988375,
+        "y": 5.220341397049716
       },
       "nextControl": {
-        "x": 2.5,
-        "y": 4.805247732879991
+        "x": 1.1678904734607345,
+        "y": 4.773220427120112
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.5,
-        "y": 2.5
+        "x": 1.123277108433735,
+        "y": 5.007566265060241
       },
       "prevControl": {
-        "x": 2.5,
-        "y": 4.537294483834081
+        "x": 1.8909656017866663,
+        "y": 5.02515135615717
       },
       "nextControl": {
-        "x": 2.5,
-        "y": 0.7297232282927957
+        "x": 0.8733426713597912,
+        "y": 5.001841130604976
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.014152744630072,
-        "y": 0.516277108433735
+        "x": 0.8828674698795178,
+        "y": 4.7453012048192775
       },
       "prevControl": {
-        "x": 6.014152744630072,
-        "y": 0.5162771084337351
+        "x": 0.7234629659578891,
+        "y": 4.93788937717028
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RT"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 2.2697095435684655,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [
     {
       "fieldPosition": {
-        "x": 4.625,
-        "y": 4.035
+        "x": 4.8,
+        "y": 3.7
       },
       "rotationOffset": 0.0,
-      "minWaypointRelativePos": 1.0,
-      "maxWaypointRelativePos": 2.0,
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 2.085856079404463,
       "name": "Point Towards Zone"
     }
   ],
-  "eventMarkers": [
-    {
-      "name": "Flywheel Go",
-      "waypointRelativePos": 0.9,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
-      "name": "Flywheel Stop",
-      "waypointRelativePos": 1.9,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -103,8 +95,8 @@
   "reversed": false,
   "folder": "LT-",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 0.0
+    "velocity": 0,
+    "rotation": -79.82008280616083
   },
   "useDefaultConstraints": true
 }

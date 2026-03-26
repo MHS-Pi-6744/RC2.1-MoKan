@@ -3,18 +3,16 @@
   "robotLength": 0.86,
   "holonomicMode": true,
   "pathFolders": [
-    ".Strategy",
     "DP-",
     "HUB-",
     "LT-",
     "NZ-",
-    "LST-",
     "OP-",
-    "RST-",
-    "RT-"
+    "RT-",
+    ".Strategy"
   ],
   "autoFolders": [
-    "Comp Autos"
+    "Comp-"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
@@ -30,14 +28,14 @@
   "driveMotorType": "vortex",
   "driveCurrentLimit": 40.0,
   "wheelCOF": 0.97,
-  "flModuleX": 0.3048,
-  "flModuleY": 0.3048,
-  "frModuleX": 0.3048,
-  "frModuleY": -0.3048,
-  "blModuleX": -0.3048,
-  "blModuleY": 0.3048,
-  "brModuleX": -0.3048,
-  "brModuleY": -0.3048,
+  "flModuleX": 0.3556,
+  "flModuleY": 0.356,
+  "frModuleX": 0.3556,
+  "frModuleY": -0.356,
+  "blModuleX": -0.3556,
+  "blModuleY": 0.3556,
+  "brModuleX": -0.3556,
+  "brModuleY": -0.3556,
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
   "robotFeatures": []
