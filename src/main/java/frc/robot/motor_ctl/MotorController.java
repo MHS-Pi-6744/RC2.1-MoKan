@@ -36,7 +36,7 @@ public class MotorController extends SubsystemBase {
 
   // Shooter Commands
   public Command stopMotor() {
-    return run(() -> m_otor.set(0));
+    return runOnce(() -> m_otor.set(0));
   }
 
   /**
@@ -44,43 +44,43 @@ public class MotorController extends SubsystemBase {
    * @return a {@link Command} that sets the motor speed to the input speed
    */
   public Command runMotor(double speed) {
-    return run(() -> m_otor.set(speed));
+    return runOnce(() -> m_otor.set(speed));
   }
 
   /**
    * @return a {@link Command} that sets the motor speed to {@link MotorConstants#k_motorSpeed}
    */
   public Command runForward() {
-    return run(() -> m_otor.set(0.75));
+    return runOnce(() -> m_otor.set(0.75));
   }
 
   /**
    * @return a {@link Command} that sets the motor speed to -{@link MotorConstants#k_motorSpeed}
    */
   public Command runReverse() {
-    return run(() -> m_otor.set(-0.75));
+    return runOnce(() -> m_otor.set(-0.75));
   }
 
   /**
    * @return a {@link Command} that sets the motor speed to {@link MotorConstants#k_motorSpeed}
    */
   public Command walkForward() {
-    return run(() -> m_otor.set(0.25));
+    return runOnce(() -> m_otor.set(0.25));
   }
 
   /**
    * @return a {@link Command} that sets the motor speed to -{@link MotorConstants#k_slowMotor}
    */
   public Command walkReverse() {
-    return run(() -> m_otor.set(-0.25));
+    return runOnce(() -> m_otor.set(-0.25));
   }
 
   public Command setSpeed(double speed) {
-    return run(() -> m_otor.set(speed));
+    return runOnce(() -> m_otor.set(speed));
   }
 
   public Command clearFaults() {
-    return run(() -> m_otor.clearFaults());
+    return runOnce(() -> m_otor.clearFaults());
   }
 
   @Override

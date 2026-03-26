@@ -61,11 +61,12 @@ public class Flywheel extends SubsystemBase {
   }
 
   public Command stopMotor() {
-    return run(() -> m_pidController.setSetpoint(0, ControlType.kVelocity));
+    // return runOnce(() -> m_pidController.setSetpoint(0, ControlType.kVelocity));
+    return runOnce(() -> m_otor.setVoltage(0));
   }
 
   public Command runRPM(double rpm) {
-    return run(() -> rpmCtl(rpm));
+    return runOnce(() -> rpmCtl(rpm));
   }
 
   public Command runAtSet() {
@@ -81,7 +82,7 @@ public class Flywheel extends SubsystemBase {
   }
 
   public Command clearFaults() {
-    return run(() -> m_otor.clearFaults());
+    return runOnce(() -> m_otor.clearFaults());
   }
 
   @Override
