@@ -70,7 +70,7 @@ public final class Constants {
     /**
      * @apiNote The Command for setting the motor speed
      */
-    public static final double kIntakeSpeed = 0.7; // Intake speed Units are percentage
+    public static final double kIntakeSpeed = 0.6; // Intake speed Units are percentage
 
     public static final class PivotSetPoints {
 

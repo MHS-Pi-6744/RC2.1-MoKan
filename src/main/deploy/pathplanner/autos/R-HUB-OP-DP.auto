@@ -147,22 +147,10 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "DP-RC"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Extend Climber"
+                  "pathName": "DP-SHOOT"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Climb"
           }
         }
       ]

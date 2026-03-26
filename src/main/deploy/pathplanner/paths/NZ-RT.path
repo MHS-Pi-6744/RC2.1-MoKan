@@ -3,53 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.9,
-        "y": 3.4339759036144573
+        "x": 7.75,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.3419909599800866,
-        "y": 2.532599284196224
+        "x": 7.75,
+        "y": 2.0
       },
       "isLocked": false,
-      "linkedName": "NZ-R"
+      "linkedName": "NZ"
     },
     {
       "anchor": {
-        "x": 6.164822389666307,
-        "y": 0.6742680301399344
+        "x": 3.6254,
+        "y": 0.5
       },
       "prevControl": {
-        "x": 6.739259406680166,
-        "y": 1.0429770345846574
-      },
-      "nextControl": {
-        "x": 5.713317948542298,
-        "y": 0.384464713051147
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 3.936921420882669,
-        "y": 0.5043433799784725
-      },
-      "prevControl": {
-        "x": 5.2286289389702745,
-        "y": 0.5580242664899151
+        "x": 7.125400000000001,
+        "y": 0.5
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Rt-shoot"
+      "linkedName": "RT"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1.4251968503936936,
-      "rotationDegrees": 90.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -63,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 81.2309377468524
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "NZ-",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 115.0
+    "rotation": 80.0
   },
   "useDefaultConstraints": true
 }
