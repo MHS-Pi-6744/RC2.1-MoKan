@@ -8,9 +8,6 @@ import static frc.robot.Constants.ShooterSubsystemConstants.kCenterCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kLeftCanId;
 import static frc.robot.Constants.ShooterSubsystemConstants.kRightCanId;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -20,6 +17,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Configs.Default;
 import frc.robot.motor_ctl.Flywheel;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ShooterSubsystem extends SubsystemBase {
   private Flywheel m_left, m_center, m_right;
@@ -39,20 +38,26 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public Command runRPM(double rpm) {
-    return new ParallelCommandGroup(m_left.runRPM(rpm), m_center.runRPM(rpm), m_right.runRPM(rpm), new WaitCommand(0.1));
+    return new ParallelCommandGroup(
+        m_left.runRPM(rpm), m_center.runRPM(rpm), m_right.runRPM(rpm), new WaitCommand(0.1));
   }
 
   public Command stopFlywheel() {
-    return new ParallelCommandGroup(m_left.stopMotor(), m_center.stopMotor(), m_right.stopMotor(), new WaitCommand(0.1));
+    return new ParallelCommandGroup(
+        m_left.stopMotor(), m_center.stopMotor(), m_right.stopMotor(), new WaitCommand(0.1));
   }
 
   public Command runAtSet() {
-    return new ParallelCommandGroup(m_left.runAtSet(), m_center.runAtSet(), m_right.runAtSet(), new WaitCommand(0.1));
+    return new ParallelCommandGroup(
+        m_left.runAtSet(), m_center.runAtSet(), m_right.runAtSet(), new WaitCommand(0.1));
   }
 
   public Command incrementSetpoint(int increment) {
     return new ParallelCommandGroup(
-        m_left.incrSet(increment), m_center.incrSet(increment), m_right.incrSet(increment), new WaitCommand(0.1));
+        m_left.incrSet(increment),
+        m_center.incrSet(increment),
+        m_right.incrSet(increment),
+        new WaitCommand(0.1));
   }
 
   public void rpmCtl(double rpm) {
