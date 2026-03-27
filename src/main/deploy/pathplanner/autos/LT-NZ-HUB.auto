@@ -36,9 +36,22 @@
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "NZ-LT"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Stop"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "NZ-LT"
+                }
+              }
+            ]
           }
         },
         {
