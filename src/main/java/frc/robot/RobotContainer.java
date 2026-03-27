@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Configs.Default;
@@ -107,16 +109,17 @@ public class RobotContainer {
       new ParallelCommandGroup(
           m_sucker.setSpeed(1.0),
           m_feeder.setSpeed(1.0),
-          new InstantCommand(() -> driveTagAssisted()));
+          new InstantCommand(() -> driveTagAssisted()),
+          new WaitCommand(0.1));
   private Command m_feeder_stop =
       new ParallelCommandGroup(
-          m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()));
+          m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()), new WaitCommand(0.1));
   private Command waterfallRun =
       new ParallelCommandGroup(
-          m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), m_shooter.runRPM(900));
+          m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0), m_shooter.runRPM(900), new WaitCommand(0.1));
   private Command waterfallStop =
       new ParallelCommandGroup(
-          m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.stopFlywheel());
+          m_sucker.stopMotor(), m_feeder.stopMotor(), m_shooter.stopFlywheel(), new WaitCommand(0.1));
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
