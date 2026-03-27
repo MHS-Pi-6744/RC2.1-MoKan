@@ -5,25 +5,31 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Pivot Down"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Flywheel Go"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "Pivot Down"
+                  "pathName": "LT-NZ"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "Intake Forwards"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "RT-NZ"
                 }
               }
             ]
@@ -36,22 +42,9 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "NZ-RT"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Flywheel Go"
-                }
-              }
-            ]
+            "pathName": "NZ-LT"
           }
         },
         {
@@ -67,7 +60,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.8
+                  "waitTime": 3.0
                 }
               }
             ]
@@ -86,7 +79,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "RT-NZ#2"
+                  "pathName": "LT-NZ#2"
                 }
               },
               {
@@ -99,21 +92,35 @@
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "Intake Stop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feeder Go"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.95
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Stop"
+                }
+              },
+              {
+                "type": "race",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Feeder Go"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 3.0
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         },
         {

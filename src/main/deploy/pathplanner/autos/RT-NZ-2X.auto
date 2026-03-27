@@ -5,6 +5,56 @@
     "data": {
       "commands": [
         {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Pivot Down"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Forwards"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "RT-NZ"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Stop"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "NZ-RT"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Flywheel Go"
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "race",
           "data": {
             "commands": [
@@ -17,159 +67,91 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0
+                  "waitTime": 3.0
                 }
               }
             ]
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "TEMP RT-NZ"
+            "name": "Feeder Stop"
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": " TEMP NZ-RT"
-          }
-        },
-        {
-          "type": "race",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "Feeder Stop"
+                  "pathName": "RT-NZ#2"
                 }
               },
               {
-                "type": "wait",
+                "type": "named",
                 "data": {
-                  "waitTime": 0
+                  "name": "Intake Forwards"
                 }
               }
             ]
           }
         },
         {
-          "type": "race",
+          "type": "named",
+          "data": {
+            "name": "Intake Stop"
+          }
+        },
+        {
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "race",
                 "data": {
-                  "name": "Flywheel Go"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.0
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Feeder Go"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 3.6
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "RT-RST"
+            "name": "Feeder Stop"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 4.0
+            "waitTime": 0.5
           }
         },
         {
-          "type": "race",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Flywheel Stop"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 4.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RST-OP"
-          }
-        },
-        {
-          "type": "race",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Flywheel Go"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.0
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "OP-RST"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 4.0
-          }
-        },
-        {
-          "type": "race",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Feeder Stop"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0
-                }
-              }
-            ]
+            "name": "Flywheel Stop"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Comp-",
   "choreoAuto": false
 }

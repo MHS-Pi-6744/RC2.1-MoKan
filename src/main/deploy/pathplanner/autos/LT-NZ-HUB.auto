@@ -7,13 +7,13 @@
         {
           "type": "named",
           "data": {
-            "name": "Pivot Down"
+            "name": "Flywheel Go"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Flywheel Go"
+            "name": "Pivot Down"
           }
         },
         {
@@ -21,24 +21,18 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": "LT-NZ"
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "Intake Forwards"
                 }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "LT-NZ"
+                }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Stop"
           }
         },
         {
@@ -48,46 +42,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "Feeder Go"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.8
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feeder Stop"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake Forwards"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "LT-NZ#2"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Stop"
+            "pathName": "LT-SHoot"
           }
         },
         {
@@ -99,13 +56,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 3.8
+            "waitTime": 6.0
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Feeder Stop"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {

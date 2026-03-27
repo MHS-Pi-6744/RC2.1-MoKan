@@ -3,25 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.5444876473410087,
-        "y": 0.7509078604714909
+        "x": 3.8333493975903608,
+        "y": 7.553722891566265
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5444876473410083,
-        "y": 0.7509078604714909
+        "x": 2.833051601885633,
+        "y": 7.36825927124143
+      },
+      "isLocked": false,
+      "linkedName": "Lt-shoot"
+    },
+    {
+      "anchor": {
+        "x": 3.055720399429386,
+        "y": 7.35376604850214
+      },
+      "prevControl": {
+        "x": 3.8878560574607164,
+        "y": 7.646557934077957
+      },
+      "nextControl": {
+        "x": 2.740240827091153,
+        "y": 7.242762682699871
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.468421994928728,
-        "y": 0.7509078604714909
+        "x": 3.0169044222539223,
+        "y": 6.215164051355207
       },
       "prevControl": {
-        "x": 2.468421994928728,
-        "y": 0.7509078604714909
+        "x": 2.9834807439865587,
+        "y": 6.506192635944955
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -54.74997546196167
   },
   "reversed": false,
-  "folder": "OP-",
+  "folder": "LT-",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -79.82008280616083
   },
   "useDefaultConstraints": true
 }

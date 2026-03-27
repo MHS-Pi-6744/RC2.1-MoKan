@@ -90,6 +90,12 @@
           "data": {
             "commands": [
               {
+                "type": "path",
+                "data": {
+                  "pathName": "DP-HUB-SHoot"
+                }
+              },
+              {
                 "type": "sequential",
                 "data": {
                   "commands": [
@@ -108,7 +114,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 1.7
+                        "waitTime": 1.0
                       }
                     },
                     {
@@ -120,7 +126,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 5.0
+                        "waitTime": 1.5
                       }
                     },
                     {
@@ -142,12 +148,6 @@
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "DP-SHOOT"
                 }
               }
             ]

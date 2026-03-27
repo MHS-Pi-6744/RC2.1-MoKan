@@ -3,48 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.6254,
-        "y": 0.5
+        "x": 4.434373493975903,
+        "y": 0.8222530120481917
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.125400000000001,
-        "y": 0.5
-      },
-      "isLocked": false,
-      "linkedName": "RT"
-    },
-    {
-      "anchor": {
-        "x": 6.499710843373493,
-        "y": 0.5
-      },
-      "prevControl": {
-        "x": 5.995807320861495,
-        "y": 0.5
-      },
-      "nextControl": {
-        "x": 7.003614365885492,
-        "y": 0.5
+        "x": 6.579458089200875,
+        "y": 0.5088563636631638
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.75,
-        "y": 4.0
+        "x": 7.789180722891565,
+        "y": 1.2375060240963864
       },
       "prevControl": {
-        "x": 7.75,
-        "y": 2.0
+        "x": 7.377398672543809,
+        "y": 0.5751426785033384
+      },
+      "nextControl": {
+        "x": 8.142706706744011,
+        "y": 1.8061628007111659
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.909385542168675,
+        "y": 3.4339759036144573
+      },
+      "prevControl": {
+        "x": 7.824951241059788,
+        "y": 3.0029577975184005
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "NZ"
+      "linkedName": "NZ-R"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0008298755186724,
+      "rotationDegrees": 115.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -58,7 +63,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 80.0
+    "rotation": 115.0
   },
   "reversed": false,
   "folder": "RT-",
