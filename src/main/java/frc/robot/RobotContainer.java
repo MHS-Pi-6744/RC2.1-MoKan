@@ -231,7 +231,7 @@ public class RobotContainer {
         .rightTrigger()
         .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
-    m_copilotController.x().and(facingHub()).onTrue(m_feeder_run).onFalse(m_feeder_stop);
+    m_copilotController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_driverController
         .rightTrigger()
