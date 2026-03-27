@@ -103,11 +103,13 @@ public class RobotContainer {
 
   private DrivingMode drivingMode;
 
-  private Command m_feeder_run =
+  private Command m_feeder_align =
       new ParallelCommandGroup(
           m_sucker.setSpeed(1.0),
           m_feeder.setSpeed(1.0),
           new InstantCommand(() -> driveTagAssisted()));
+  private Command m_feeder_run =
+      new ParallelCommandGroup(m_sucker.setSpeed(1.0), m_feeder.setSpeed(1.0));
   private Command m_feeder_stop =
       new ParallelCommandGroup(
           m_sucker.stopMotor(), m_feeder.stopMotor(), new InstantCommand(() -> driveNormal()));
@@ -231,7 +233,8 @@ public class RobotContainer {
         .rightTrigger()
         .whileTrue(m_shooter.smartShootCommand())
         .onFalse(m_shooter.stopFlywheel());
-    m_copilotController.x().onTrue(m_feeder_run).onFalse(m_feeder_stop);
+    m_copilotController.x().onTrue(m_feeder_align).onFalse(m_feeder_stop);
+    m_copilotController.a().onTrue(m_feeder_run).onFalse(m_feeder_stop);
     m_driverController.start().onTrue(m_robotDrive.resetGyro());
     m_driverController
         .rightTrigger()
