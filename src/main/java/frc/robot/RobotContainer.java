@@ -140,7 +140,7 @@ public class RobotContainer {
     drivingMode = DrivingMode.kNormal;
 
     // Build an auto chooser. This will use Commands.none() as the default option.
-    autoChooser = new SendableChooser<Command>(); // AutoBuilder.buildAutoChooser();
+    autoChooser = AutoBuilder.buildAutoChooser();
     autoChooser.addOption("Pathfind Left Climb Red", pathfindLeftClimbRed);
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
