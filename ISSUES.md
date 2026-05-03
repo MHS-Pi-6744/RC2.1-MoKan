@@ -4,4 +4,4 @@
 ### Issues:
 1. Set up this repo - Sr
 2. Fix the X button conflict - Irman?
-3. Decide if this should be updated to use the new motor control method - Team
+3. Decide if this code should be updated to use the new motor control method before MoKan - Team
