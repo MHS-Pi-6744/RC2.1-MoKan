@@ -260,7 +260,7 @@ public class RobotContainer {
     m_driverController
         .rightBumper()
         .onTrue(m_pivot.setTargetPosition(PivotSetPoints.kStartPosition));
-    m_driverController.x().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
+    m_driverController.a().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kMiddlePosition));
     m_driverController.leftBumper().onTrue(m_pivot.setTargetPosition(PivotSetPoints.kEndPosition));
   }
 
