@@ -25,8 +25,11 @@ public class ShooterSubsystem extends SubsystemBase {
   Supplier<Double> distance;
   Function<Double, Double> func =
       (x) -> {
-        var max = 4000;
-        var val = 366 * x + 2000;
+        var max = 5000;
+        var val =
+            2500
+                - (3.854 / 2.420)
+                    * (1 - Math.pow(2.71828, (2.420374 * x))); // var val = 366 * x + 2000;
         return val > max ? max : val;
       };
 
